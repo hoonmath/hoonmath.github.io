@@ -170,3 +170,19 @@ details[open] summary>span{transform:rotate(45deg)}
 @media(max-width:359px){.container{width:calc(100% - 32px)}.hero-visual{margin-inline:-16px;height:350px}.hero-visual .portrait{height:350px}.hero-wordmark{font-size:70px}.hero-caption{right:16px;min-width:158px}.hero-bottom{font-size:9px}.hero-bottom a span{margin-left:6px}.materials-grid{column-gap:12px}.material-description h3{font-size:19px}.hanja{margin-left:4px}.footer-inner>span{margin-left:0}.contact-box{padding:27px 20px}.phone-number{font-size:25px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{.site-header{position:static}.topline,.menu-toggle,.mobile-contact,.lightbox,.hero-bottom,.filter-group{display:none}.container{width:100%}.section{padding-block:35px}.section-dark{color:#000;background:#fff}.section-dark p,.section-dark .eyebrow{color:#444}.hero-inner{min-height:450px}.hero-copy{padding-top:25px}.portrait{max-height:440px}.site-footer{padding-bottom:20px}.material,.principles article,.roadmap li{break-inside:avoid}}
+
+/* Keep the photograph and the teacher's introduction together. */
+.hero-inner{grid-template-columns:minmax(0,.95fr) minmax(0,1.3fr);gap:28px;min-height:700px;align-items:center}
+.hero-copy{padding-block:70px}
+.hero-visual{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.86fr);align-items:center;gap:26px;padding-block:46px}
+.hero-visual .portrait{position:static;inset:auto;width:100%;max-width:100%;height:auto;max-height:none;object-fit:contain;margin:0;aspect-ratio:3/4}
+.hero-caption{position:static;inset:auto;min-width:0;width:100%;padding:22px 0 0;background:transparent;border-top:1px solid #97998b;display:block}
+.teacher-label{font-size:12px;line-height:1.7;letter-spacing:.08em;color:var(--muted)}
+.hero-caption .teacher-name{font-size:38px;font-weight:750;letter-spacing:.04em;line-height:1.4;margin-top:12px}
+.teacher-affiliation{font-size:16px;line-height:1.8;margin-top:9px}
+.teacher-credentials{border-block:1px solid var(--line);margin-top:21px;padding-block:15px;font-size:16px;line-height:1.9;color:var(--muted)}
+.teacher-credentials li+li{margin-top:8px}
+.teacher-intro{font-size:16px;line-height:1.9;margin-top:18px;color:var(--muted)}
+@media(max-width:1100px){.hero-inner{grid-template-columns:1fr;gap:0;min-height:0}.hero-copy{padding:54px 0 36px}.hero-visual{grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:45px;max-width:760px;width:100%;margin-inline:auto;padding:0 0 46px}.hero-visual .portrait{max-height:480px}.hero-caption{padding-top:24px}.hero-caption .teacher-name{font-size:36px}}
+@media(max-width:600px){.hero-inner{display:block}.hero-copy{padding:43px 0 30px}.hero-visual{display:flex;flex-direction:column;align-items:stretch;gap:0;height:auto;overflow:visible;margin:0;padding:0 0 32px}.hero-visual .portrait{width:100%;height:auto;max-width:100%;max-height:none;aspect-ratio:3/4}.hero-caption{padding:25px 0 0;margin-top:26px}.hero-caption .teacher-name{font-size:34px;margin-top:10px}.teacher-affiliation{font-size:16px}.teacher-credentials{font-size:16px;margin-top:18px;padding-block:17px}.teacher-intro{font-size:16px;margin-top:17px}.teacher-label{font-size:12px}}
+@media print{.hero-inner{display:block;min-height:0}.hero-copy{padding-block:20px}.hero-visual{grid-template-columns:200px 1fr;max-width:none;padding-block:20px}.hero-visual .portrait{max-height:280px}.hero-caption{break-inside:avoid}}
