@@ -48,7 +48,7 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 @media(max-width:600px){.hero-shortcuts{margin-top:25px}.hero-shortcuts a{padding:15px 10px}.hero-shortcuts strong{font-size:16px}.hero-shortcuts span{font-size:12px;margin-top:6px}.class-grid{grid-template-columns:1fr;gap:20px;margin-top:25px}.class-card{padding:25px 24px}.class-card h3 strong{font-size:34px}.class-subject{font-size:18px}.class-times dd{font-size:20px}.class-draft-note{font-size:13px}}
 
 /* Separate each shortcut tab from its smaller supporting description. */
-.hero-shortcuts{gap:14px;border:0}.hero-shortcuts a,.hero-shortcuts a:first-child{padding:0}.hero-shortcuts a+a{border-left:0}.hero-shortcuts a:hover{background:transparent}.hero-shortcuts strong{padding:11px 10px;border:1px solid #c8d6ea;background:var(--accent-soft);text-align:center}.hero-shortcuts span{margin-top:10px}.hero-shortcuts a:hover strong{background:var(--accent);border-color:var(--accent);color:white}
+.hero-shortcuts{gap:14px;border:0}.hero-shortcuts a,.hero-shortcuts a:first-child{padding:0}.hero-shortcuts a+a{border-left:0}.hero-shortcuts a:hover{background:transparent}.hero-shortcuts strong{padding:11px 10px;border:1px solid #c8d6ea;background:var(--accent-soft);text-align:center}.hero-shortcuts span{margin-top:10px;text-align:center}.hero-shortcuts a:hover strong{background:var(--accent);border-color:var(--accent);color:white}
 @media(max-width:600px){.hero-shortcuts{gap:10px}.hero-shortcuts strong{font-size:14px;padding:11px 4px;min-height:44px}.hero-shortcuts span{margin-top:8px}}
 
 .philosophy-layout .teaching-promise{color:#165dce;font-weight:750}
