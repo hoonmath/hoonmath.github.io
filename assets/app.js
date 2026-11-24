@@ -24,7 +24,7 @@
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') closeMenu(true);
   });
-  window.matchMedia('(min-width: 801px)').addEventListener('change', () => closeMenu());
+  window.matchMedia('(min-width: 961px)').addEventListener('change', () => closeMenu());
   document.querySelectorAll('[data-year]').forEach((element) => {
     element.textContent = String(new Date().getFullYear());
   });
