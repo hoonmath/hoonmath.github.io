@@ -51,6 +51,8 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 .hero-shortcuts{gap:14px;border:0}.hero-shortcuts a,.hero-shortcuts a:first-child{padding:0}.hero-shortcuts a+a{border-left:0}.hero-shortcuts a:hover{background:transparent}.hero-shortcuts strong{padding:11px 10px;border:1px solid #c8d6ea;background:var(--accent-soft);text-align:center}.hero-shortcuts span{margin-top:10px}.hero-shortcuts a:hover strong{background:var(--accent);border-color:var(--accent);color:white}
 @media(max-width:600px){.hero-shortcuts{gap:10px}.hero-shortcuts strong{font-size:14px;padding:11px 4px;min-height:44px}.hero-shortcuts span{margin-top:8px}}
 
+.philosophy-layout .teaching-promise{color:#165dce;font-weight:750}
+
 /* Supplied brand artwork and the five teaching features. */
 .brand-mark{display:block;width:40px;height:38px;object-fit:contain;flex-shrink:0;background:transparent}.footer-wordmark{display:inline-flex;align-items:center;width:270px;max-width:100%;flex-shrink:0}.footer-wordmark img{display:block;width:100%;height:auto}.principles p{margin-top:0;font-size:17px;line-height:1.95}.feature-highlight{color:var(--accent);font-weight:750}.philosophy-layout .section-intro h2{font-size:36px;line-height:1.6;letter-spacing:-.05em}
 @media(max-width:600px){.brand-mark{width:36px;height:34px}.footer-wordmark{width:220px;max-width:calc(100% - 70px)}.principles p{font-size:16px;line-height:1.95}.philosophy-layout .section-intro h2{font-size:28px;line-height:1.6}}
