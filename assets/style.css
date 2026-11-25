@@ -42,7 +42,7 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 @media(max-width:600px){.academy-contact{flex-direction:column;align-items:flex-start;gap:7px;margin-top:15px;padding-top:18px;font-size:14px}.mobile-contact{grid-template-columns:minmax(0,1.8fr) minmax(0,1fr)}.mobile-contact a{font-size:14px;line-height:1.5;min-width:0;padding:10px 8px;text-align:center}.site-footer{padding-bottom:calc(120px + env(safe-area-inset-bottom))}.portal-main+.site-footer{padding-bottom:30px}}
 
 /* Give the top timetable shortcut a stronger visual contrast. */
-.utility-bar{background:#f5f8fd}.utility-bar .schedule-link{min-height:44px;padding:9px 20px;background:#183a68;border-color:#183a68;color:#fff;font-size:16px;font-weight:750;line-height:1.6;letter-spacing:-.02em}.utility-bar .schedule-link:hover{background:#2458a6;border-color:#2458a6;color:#fff}
+.utility-bar{background:#f5f8fd}.utility-bar .schedule-link{min-height:44px;padding:9px 20px;background:#e49a00;border-color:#e49a00;color:#122154;font-size:16px;font-weight:750;line-height:1.6;letter-spacing:-.02em}.utility-bar .schedule-link:hover{background:#f2b52b;border-color:#f2b52b;color:#122154}
 @media(max-width:600px){.utility-inner{padding-block:8px}.utility-bar .schedule-link{width:100%;font-size:14px;padding:10px 12px}}
 
 /* Class shortcuts and provisional course information. */
