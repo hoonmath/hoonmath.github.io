@@ -48,13 +48,20 @@
   const image = document.querySelector('#lightbox-image');
   const caption = document.querySelector('#lightbox-caption');
   let currentAnchor = null;
-  const visibleImages = () => [...document.querySelectorAll('[data-lightbox]')].filter((anchor) => !anchor.closest('[hidden]'));
+  const visibleImages = () => [...document.querySelectorAll('[data-lightbox]')].filter((anchor) =>
+    !anchor.closest('[hidden]') && (anchor.dataset.gallery || 'materials') === (currentAnchor?.dataset.gallery || 'materials')
+  );
   const showImage = (anchor) => {
     currentAnchor = anchor;
     image.src = anchor.href;
     image.alt = anchor.dataset.caption;
     const images = visibleImages();
     caption.textContent = `${anchor.dataset.caption} (${images.indexOf(anchor) + 1} / ${images.length})`;
+    const isCare = !!anchor.closest('#care');
+    dialog.classList.toggle('lightbox-care', isCare);
+    dialog.querySelector('[data-lightbox-heading]').textContent = isCare ? 'LEARNING CARE · 이용 화면' : 'CLASS MATERIALS · 2025';
+    dialog.querySelector('.lightbox-stage').scrollTop = 0;
+    dialog.querySelectorAll('.lightbox-prev, .lightbox-next').forEach((button) => { button.hidden = images.length < 2; });
   };
   const moveImage = (direction) => {
     const images = visibleImages();
