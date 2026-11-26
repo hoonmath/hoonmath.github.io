@@ -98,29 +98,80 @@
     const previous = careExplorer.querySelector('.care-screen-prev');
     const next = careExplorer.querySelector('.care-screen-next');
     const status = careExplorer.querySelector('.care-screen-status');
+    const screen = careExplorer.querySelector('.care-phone-screen');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let category = 0;
     let slide = 0;
-    const renderCare = () => {
+    let renderVersion = 0;
+    let transitions = [];
+    let outgoingImage = null;
+    const finishTransition = () => {
+      transitions.forEach((animation) => animation.cancel());
+      transitions = [];
+      outgoingImage?.remove();
+      outgoingImage = null;
+    };
+    const renderCare = async ({ animate = true, direction = 1 } = {}) => {
+      const version = ++renderVersion;
+      const selectedCategory = category;
+      const selectedSlide = slide;
+      const slides = [...panels[selectedCategory].querySelectorAll('.care-screen-image')];
+      const incoming = slides[selectedSlide];
+      const photo = incoming.querySelector('img');
+      screen.setAttribute('aria-busy', 'true');
+      photo.loading = 'eager';
+      if (!photo.complete || !photo.naturalWidth) await photo.decode().catch(() => {});
+      // Ignore an earlier image load when the visitor has already selected another screen.
+      if (version !== renderVersion) return;
+      const current = screen.querySelector('.care-panel:not([hidden]) .care-screen-image.is-active img');
+      finishTransition();
+      const useMotion = animate && !reducedMotion.matches && current && current !== photo;
+      if (useMotion) {
+        outgoingImage = current.cloneNode();
+        outgoingImage.className = 'care-transition-image';
+        outgoingImage.alt = '';
+        outgoingImage.setAttribute('aria-hidden', 'true');
+        screen.append(outgoingImage);
+      }
       tabs.forEach((tab, index) => {
-        const selected = index === category;
+        const selected = index === selectedCategory;
         tab.setAttribute('aria-selected', String(selected));
         tab.tabIndex = selected ? 0 : -1;
         panels[index].hidden = !selected;
       });
-      const slides = [...panels[category].querySelectorAll('.care-screen-image')];
-      slides.forEach((image, index) => image.classList.toggle('is-active', index === slide));
+      slides.forEach((image, index) => image.classList.toggle('is-active', index === selectedSlide));
       previous.hidden = next.hidden = slides.length < 2;
-      status.textContent = `${tabs[category].firstElementChild.textContent} · ${slide + 1} / ${slides.length}`;
+      status.textContent = `${tabs[selectedCategory].firstElementChild.textContent} · ${selectedSlide + 1} / ${slides.length}`;
+      screen.setAttribute('aria-busy', 'false');
+      // Prepare the other photos in this category before the next press.
+      slides.forEach((item) => { item.querySelector('img').loading = 'eager'; });
+      if (useMotion) {
+        transitions = [
+          outgoingImage.animate([
+            { opacity: 1, transform: 'translateX(0)' },
+            { opacity: 0, transform: `translateX(${-direction * 4}px)` }
+          ], { duration: 360, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards' }),
+          incoming.animate([
+            { opacity: 0, transform: `translateX(${direction * 8}px)` },
+            { opacity: 1, transform: 'translateX(0)' }
+          ], { duration: 420, easing: 'cubic-bezier(.22,.61,.36,1)' })
+        ];
+        Promise.all(transitions.map((animation) => animation.finished)).then(() => {
+          if (version === renderVersion) finishTransition();
+        }).catch(() => {});
+      }
     };
     const selectCare = (index) => {
+      const direction = index >= category ? 1 : -1;
       category = index;
       slide = 0;
-      renderCare();
+      renderCare({ direction });
     };
     const moveCare = (direction) => {
       const count = panels[category].querySelectorAll('.care-screen-image').length;
+      if (count < 2) return;
       slide = (slide + direction + count) % count;
-      renderCare();
+      renderCare({ direction });
     };
     tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => selectCare(index));
@@ -138,7 +189,7 @@
     });
     previous.addEventListener('click', () => moveCare(-1));
     next.addEventListener('click', () => moveCare(1));
-    careExplorer.querySelector('.care-phone-screen').addEventListener('keydown', (event) => {
+    screen.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowLeft') { event.preventDefault(); moveCare(-1); }
       if (event.key === 'ArrowRight') { event.preventDefault(); moveCare(1); }
     });
@@ -148,10 +199,13 @@
       const index = slides.indexOf(currentAnchor);
       if (index < 0) return;
       slide = index;
-      renderCare();
-      currentAnchor.focus({ preventScroll: true });
+      const anchor = currentAnchor;
+      renderCare({ animate: false }).then(() => anchor.focus({ preventScroll: true }));
     });
-    renderCare();
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) finishTransition();
+    });
+    renderCare({ animate: false });
   }
 
   const bookDialog = document.querySelector('#book-dialog');

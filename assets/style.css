@@ -74,14 +74,14 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 .care-explorer{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:70px;align-items:center;margin-top:44px}
 .care-tabs{display:grid;min-width:0;border-top:1px solid var(--line)}
 .care-tab{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;min-height:88px;padding:22px 24px;border-bottom:1px solid var(--line);border-left:3px solid transparent;background:#fff;text-align:left;font-size:1.125rem;font-weight:550;line-height:1.6}
-.care-tab:hover{background:#f5f8fd}.care-tab[aria-selected="true"]{background:var(--accent-soft);border-left-color:var(--accent);color:var(--accent);font-weight:750}
+.care-tab{transition:background-color .2s,color .2s,border-color .2s}.care-tab:hover{background:#f5f8fd}.care-tab[aria-selected="true"]{background:var(--accent-soft);border-left-color:var(--accent);color:var(--accent);font-weight:750}
 .care-tab-count{flex-shrink:0;color:#63748a;font-size:.875rem;font-weight:400;white-space:nowrap}.care-tab[aria-selected="true"] .care-tab-count{color:var(--accent)}
 .care-device-column{min-width:0;width:100%;max-width:430px;justify-self:center}
 .care-phone{position:relative;width:min(100%,350px);margin-inline:auto;padding:7px;border-radius:44px;background:#1b2b43;box-shadow:0 18px 50px #132a4614}
 .care-phone-screen{position:relative;width:100%;aspect-ratio:1179 / 2556;overflow:hidden;border-radius:37px;background:#fff}
 .care-panel,.care-screen-image{width:100%;height:100%}.care-panel{position:relative}.care-panel:focus-visible{outline-offset:-5px}
 .care-screen-image{display:none;background:#fff}.care-screen-image.is-active{display:block}.care-screen-image:focus-visible{outline-offset:-5px}.care-screen-image img{width:100%;height:100%;object-fit:contain}
-.care-phone-status{position:absolute;inset:0 0 auto;height:6.1%;display:flex;align-items:center;justify-content:space-between;padding-inline:8%;background:#fff;color:#132a46;pointer-events:none;font-size:12px;font-weight:650;line-height:1}
+.care-transition-image{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain;pointer-events:none}.care-phone-status{position:absolute;inset:0 0 auto;z-index:2;height:6.1%;display:flex;align-items:center;justify-content:space-between;padding-inline:8%;background:#fff;color:#132a46;pointer-events:none;font-size:12px;font-weight:650;line-height:1}
 .care-phone-island{position:absolute;left:50%;top:23%;width:25%;height:54%;transform:translateX(-50%);border-radius:24px;background:#17263b}
 .care-phone::after{content:"";position:absolute;left:35%;right:35%;bottom:14px;height:4px;border-radius:4px;background:#17263b;pointer-events:none}
 .care-screen-controls{display:flex;align-items:center;justify-content:center;gap:12px;min-height:48px;margin-top:20px}
