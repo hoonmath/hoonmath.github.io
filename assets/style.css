@@ -138,13 +138,13 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 .class-card-daeil{background:#f3f7fe;border-top-color:#2458a6}.class-card-gwanak{background:#fffbf3;border-top-color:#c5983d}
 
 /* Five concise numbered rows keep every teaching feature visible together. */
-#philosophy .philosophy-layout{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:64px;align-items:start}
+#philosophy .philosophy-layout{grid-template-columns:minmax(0,1fr);gap:32px;align-items:start}
 #philosophy .section-intro{position:static}#philosophy .section-intro h2{font-size:clamp(30px,3vw,40px);line-height:1.5}
 .teaching-features{min-width:0;border:1px solid var(--line);border-top:3px solid var(--accent);background:#fff}
-.teaching-features>li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:20px;align-items:start;padding:20px 26px}
+.teaching-features>li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:18px;align-items:start;padding:20px 24px}
 .teaching-features>li+li{border-top:1px solid var(--line)}.teaching-features>li:nth-child(odd){background:#f7faff}
 .teaching-feature-number{display:flex;align-items:center;justify-content:center;min-height:34px;background:var(--accent-soft);color:var(--accent);font-size:18px;font-weight:750;line-height:1.5;font-variant-numeric:tabular-nums}
-.teaching-features p{margin:0;color:#405570;font-size:18px;line-height:1.9}
+.teaching-features p{margin:0;color:#405570;font-size:clamp(16px,calc(1.6vw + .6px),18px);line-height:1.9}
 @media(max-width:960px){#philosophy .philosophy-layout{grid-template-columns:1fr;gap:28px}}
 @media(max-width:600px){.teaching-features>li{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:18px 16px}.teaching-feature-number{min-height:28px;font-size:16px}.teaching-features p{font-size:16px;line-height:1.9}#philosophy .section-intro h2{font-size:28px}}
 @media print{.hero-visual .hero-caption{position:static;width:100%;margin:0}}
