@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://hoonmath.github.io/">
   <link rel="icon" href="assets/favicon.svg?v=20261124-logo" type="image/svg+xml">
   <link rel="preload" href="assets/images/choi-seohoon-cutout-20261124.webp" as="image">
-  <link rel="stylesheet" href="assets/style.css?v=20261126-promise-emphasis">
+  <link rel="stylesheet" href="assets/style.css?v=20261126-care-phone">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="최서훈수학">
@@ -37,7 +37,7 @@
     ]
   }
   </script>
-  <script src="assets/app.js?v=20261126-book-preview" defer></script>
+  <script src="assets/app.js?v=20261126-care-phone" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -175,52 +175,48 @@
         <h2 id="care-title">언제 어디서든 확인 가능한<br><strong>누적관리시스템</strong></h2>
         <p class="section-lead care-system-description">출결기록 / 반별 누적 테스트 성적표 / 클리닉 예약 / 복습영상 시청 / 상담 예약 까지 학생 및 학부모님 모두 언제든지 확인 가능합니다.</p>
         <div class="section-actions care-system-actions"><a class="button button-dark" href="https://hoonmath.daechion.com" target="_blank" rel="noopener noreferrer" title="관리시스템 새 창에서 열기" aria-describedby="care-login-guide">최서훈수학 관리시스템 바로가기</a><p class="care-login-guide" id="care-login-guide">최서훈 수학 수강생만 로그인이 가능합니다. (ID : 휴대폰번호 / PW : 휴대폰번호 뒤 4자리)</p></div>
-        <div class="care-grid care-system-grid">
-          <article class="care-card" data-care="test-results">
-            <h3><a class="care-card-main" href="assets/images/care/care-02.png" data-lightbox data-gallery="care-test-results" data-caption="테스트 성적표 확인 · 누적 성적과 학습 현황" aria-label="테스트 성적표 확인 화면 2장 확대">테스트 성적표 확인</a></h3>
-            <div class="care-previews" style="--preview-count:2">
-              <span class="care-preview"><img src="assets/images/care/care-02.png" alt="누적 성적과 학습 현황 화면" width="1179" height="2556" loading="lazy"></span>
-              <a class="care-preview" href="assets/images/care/care-01.png" data-lightbox data-gallery="care-test-results" data-caption="테스트 성적표 확인 · 테스트별 성적" aria-label="테스트별 성적 화면 확대"><img src="assets/images/care/care-01.png" alt="테스트별 점수 확인 화면" width="1179" height="2556" loading="lazy"></a>
+        <div class="care-explorer">
+          <div class="care-tabs" role="tablist" aria-label="누적관리시스템 이용 화면" aria-orientation="vertical">
+            <button class="care-tab" type="button" role="tab" id="care-tab-test-results" aria-controls="care-panel-test-results" aria-selected="true" tabindex="0"><span>테스트 성적표 확인</span><span class="care-tab-count">화면 2장</span></button>
+            <button class="care-tab" type="button" role="tab" id="care-tab-clinic" aria-controls="care-panel-clinic" aria-selected="false" tabindex="-1"><span>클리닉 예약</span><span class="care-tab-count">화면 1장</span></button>
+            <button class="care-tab" type="button" role="tab" id="care-tab-notices" aria-controls="care-panel-notices" aria-selected="false" tabindex="-1"><span>공지사항 및 강의자료확인</span><span class="care-tab-count">화면 3장</span></button>
+            <button class="care-tab" type="button" role="tab" id="care-tab-review-videos" aria-controls="care-panel-review-videos" aria-selected="false" tabindex="-1"><span>복습영상 시청</span><span class="care-tab-count">화면 1장</span></button>
+            <button class="care-tab" type="button" role="tab" id="care-tab-consultation" aria-controls="care-panel-consultation" aria-selected="false" tabindex="-1"><span>상담 예약</span><span class="care-tab-count">화면 2장</span></button>
+            <button class="care-tab" type="button" role="tab" id="care-tab-questions" aria-controls="care-panel-questions" aria-selected="false" tabindex="-1"><span>질의응답 및 수강후기</span><span class="care-tab-count">화면 4장</span></button>
+          </div>
+          <div class="care-device-column">
+            <div class="care-phone">
+              <div class="care-phone-screen">
+                <div class="care-panel" id="care-panel-test-results" role="tabpanel" aria-labelledby="care-tab-test-results" tabindex="0">
+                  <a class="care-screen-image is-active" href="assets/images/care/care-02.png" data-lightbox data-gallery="care-test-results" data-caption="테스트 성적표 확인 · 누적 성적과 학습 현황" aria-label="테스트 성적표 확인 · 누적 성적과 학습 현황 확대"><img src="assets/images/care/care-02.png" alt="테스트 성적표 확인 · 누적 성적과 학습 현황" width="1179" height="2556"></a>
+                  <a class="care-screen-image" href="assets/images/care/care-01.png" data-lightbox data-gallery="care-test-results" data-caption="테스트 성적표 확인 · 테스트별 성적" aria-label="테스트 성적표 확인 · 테스트별 성적 확대"><img src="assets/images/care/care-01.png" alt="테스트 성적표 확인 · 테스트별 성적" width="1179" height="2556" loading="lazy"></a>
+                </div>
+                <div class="care-panel" id="care-panel-clinic" role="tabpanel" aria-labelledby="care-tab-clinic" tabindex="0" hidden>
+                  <a class="care-screen-image is-active" href="assets/images/care/care-03.png" data-lightbox data-gallery="care-clinic" data-caption="클리닉 예약 · 날짜와 시간 확인" aria-label="클리닉 예약 · 날짜와 시간 확인 확대"><img src="assets/images/care/care-03.png" alt="클리닉 예약 · 날짜와 시간 확인" width="1179" height="2556" loading="lazy"></a>
+                </div>
+                <div class="care-panel" id="care-panel-notices" role="tabpanel" aria-labelledby="care-tab-notices" tabindex="0" hidden>
+                  <a class="care-screen-image is-active" href="assets/images/care/care-05.png" data-lightbox data-gallery="care-notices" data-caption="공지사항 및 강의자료확인 · 강의 공지" aria-label="공지사항 및 강의자료확인 · 강의 공지 확대"><img src="assets/images/care/care-05.png" alt="공지사항 및 강의자료확인 · 강의 공지" width="1179" height="2556" loading="lazy"></a>
+                  <a class="care-screen-image" href="assets/images/care/care-06.png" data-lightbox data-gallery="care-notices" data-caption="공지사항 및 강의자료확인 · 과제 안내" aria-label="공지사항 및 강의자료확인 · 과제 안내 확대"><img src="assets/images/care/care-06.png" alt="공지사항 및 강의자료확인 · 과제 안내" width="1179" height="2556" loading="lazy"></a>
+                  <a class="care-screen-image" href="assets/images/care/care-04.png" data-lightbox data-gallery="care-notices" data-caption="공지사항 및 강의자료확인 · 강의 자료" aria-label="공지사항 및 강의자료확인 · 강의 자료 확대"><img src="assets/images/care/care-04.png" alt="공지사항 및 강의자료확인 · 강의 자료" width="1179" height="2556" loading="lazy"></a>
+                </div>
+                <div class="care-panel" id="care-panel-review-videos" role="tabpanel" aria-labelledby="care-tab-review-videos" tabindex="0" hidden>
+                  <a class="care-screen-image is-active" href="assets/images/care/care-07.png" data-lightbox data-gallery="care-review-videos" data-caption="복습영상 시청 · 회차별 영상과 시청 기록" aria-label="복습영상 시청 · 회차별 영상과 시청 기록 확대"><img src="assets/images/care/care-07.png" alt="복습영상 시청 · 회차별 영상과 시청 기록" width="1179" height="2556" loading="lazy"></a>
+                </div>
+                <div class="care-panel" id="care-panel-consultation" role="tabpanel" aria-labelledby="care-tab-consultation" tabindex="0" hidden>
+                  <a class="care-screen-image is-active" href="assets/images/care/care-09.png" data-lightbox data-gallery="care-consultation" data-caption="상담 예약 · 예약 일정 확인" aria-label="상담 예약 · 예약 일정 확인 확대"><img src="assets/images/care/care-09.png" alt="상담 예약 · 예약 일정 확인" width="1179" height="2556" loading="lazy"></a>
+                  <a class="care-screen-image" href="assets/images/care/care-08.png" data-lightbox data-gallery="care-consultation" data-caption="상담 예약 · 날짜와 시간 선택" aria-label="상담 예약 · 날짜와 시간 선택 확대"><img src="assets/images/care/care-08.png" alt="상담 예약 · 날짜와 시간 선택" width="1179" height="2556" loading="lazy"></a>
+                </div>
+                <div class="care-panel" id="care-panel-questions" role="tabpanel" aria-labelledby="care-tab-questions" tabindex="0" hidden>
+                  <a class="care-screen-image is-active" href="assets/images/care/care-11.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 질문과 답변" aria-label="질의응답 및 수강후기 · 질문과 답변 확대"><img src="assets/images/care/care-11.png" alt="질의응답 및 수강후기 · 질문과 답변" width="1179" height="2556" loading="lazy"></a>
+                  <a class="care-screen-image" href="assets/images/care/care-13.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 질의응답 목록" aria-label="질의응답 및 수강후기 · 질의응답 목록 확대"><img src="assets/images/care/care-13.png" alt="질의응답 및 수강후기 · 질의응답 목록" width="1179" height="2556" loading="lazy"></a>
+                  <a class="care-screen-image" href="assets/images/care/care-12.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 수강후기 목록" aria-label="질의응답 및 수강후기 · 수강후기 목록 확대"><img src="assets/images/care/care-12.png" alt="질의응답 및 수강후기 · 수강후기 목록" width="1179" height="2556" loading="lazy"></a>
+                  <a class="care-screen-image" href="assets/images/care/care-10.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 수강후기 상세" aria-label="질의응답 및 수강후기 · 수강후기 상세 확대"><img src="assets/images/care/care-10.png" alt="질의응답 및 수강후기 · 수강후기 상세" width="1179" height="2556" loading="lazy"></a>
+                </div>
+                <div class="care-phone-status" aria-hidden="true"><span>9:41</span><span class="care-phone-island"></span><svg viewBox="0 0 40 16" width="34" height="14" fill="currentColor"><path d="M0 11h3v4H0zm5-4h3v8H5zm5-3h3v11h-3zm5-3h3v14h-3z"/><rect x="23" y="2" width="14" height="12" rx="2" fill="none" stroke="currentColor"/><path d="M25 4h10v8H25zm13 2h2v4h-2z"/></svg></div>
+              </div>
             </div>
-            <span class="care-preview-note">화면 2장 · 클릭하여 확대</span>
-          </article>
-          <article class="care-card" data-care="clinic">
-            <h3><a class="care-card-main" href="assets/images/care/care-03.png" data-lightbox data-gallery="care-clinic" data-caption="클리닉 예약 · 날짜와 시간 확인" aria-label="클리닉 예약 화면 확대">클리닉 예약</a></h3>
-            <div class="care-previews" style="--preview-count:1"><span class="care-preview"><img src="assets/images/care/care-03.png" alt="클리닉 일정 선택과 예약 확인 화면" width="1179" height="2556" loading="lazy"></span></div>
-            <span class="care-preview-note">화면 1장 · 클릭하여 확대</span>
-          </article>
-          <article class="care-card" data-care="notices">
-            <h3><a class="care-card-main" href="assets/images/care/care-05.png" data-lightbox data-gallery="care-notices" data-caption="공지사항 및 강의자료확인 · 강의 공지" aria-label="공지사항 및 강의자료확인 화면 3장 확대">공지사항 및 강의자료확인</a></h3>
-            <div class="care-previews" style="--preview-count:3">
-              <span class="care-preview"><img src="assets/images/care/care-05.png" alt="수업·과제·시험 공지 화면" width="1179" height="2556" loading="lazy"></span>
-              <a class="care-preview" href="assets/images/care/care-06.png" data-lightbox data-gallery="care-notices" data-caption="공지사항 및 강의자료확인 · 과제 안내" aria-label="과제 안내 화면 확대"><img src="assets/images/care/care-06.png" alt="과제 안내 목록 화면" width="1179" height="2556" loading="lazy"></a>
-              <a class="care-preview" href="assets/images/care/care-04.png" data-lightbox data-gallery="care-notices" data-caption="공지사항 및 강의자료확인 · 강의 자료" aria-label="강의 자료 화면 확대"><img src="assets/images/care/care-04.png" alt="회차별 강의 자료 화면" width="1179" height="2556" loading="lazy"></a>
-            </div>
-            <span class="care-preview-note">화면 3장 · 클릭하여 확대</span>
-          </article>
-          <article class="care-card" data-care="review-videos">
-            <h3><a class="care-card-main" href="assets/images/care/care-07.png" data-lightbox data-gallery="care-review-videos" data-caption="복습영상 시청 · 회차별 영상과 시청 기록" aria-label="복습영상 시청 화면 확대">복습영상 시청</a></h3>
-            <div class="care-previews" style="--preview-count:1"><span class="care-preview"><img src="assets/images/care/care-07.png" alt="회차별 복습영상과 시청 진도 화면" width="1179" height="2556" loading="lazy"></span></div>
-            <span class="care-preview-note">화면 1장 · 클릭하여 확대</span>
-          </article>
-          <article class="care-card" data-care="consultation">
-            <h3><a class="care-card-main" href="assets/images/care/care-09.png" data-lightbox data-gallery="care-consultation" data-caption="상담 예약 · 예약 일정 확인" aria-label="상담 예약 화면 2장 확대">상담 예약</a></h3>
-            <div class="care-previews" style="--preview-count:2">
-              <span class="care-preview"><img src="assets/images/care/care-09.png" alt="상담 예약 일정 확인 화면" width="1179" height="2556" loading="lazy"></span>
-              <a class="care-preview" href="assets/images/care/care-08.png" data-lightbox data-gallery="care-consultation" data-caption="상담 예약 · 날짜와 시간 선택" aria-label="상담 날짜와 시간 선택 화면 확대"><img src="assets/images/care/care-08.png" alt="상담 날짜와 시간 선택 화면" width="1179" height="2556" loading="lazy"></a>
-            </div>
-            <span class="care-preview-note">화면 2장 · 클릭하여 확대</span>
-          </article>
-          <article class="care-card" data-care="questions">
-            <h3><a class="care-card-main" href="assets/images/care/care-11.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 질문과 답변" aria-label="질의응답 및 수강후기 화면 4장 확대">질의응답 및 수강후기</a></h3>
-            <div class="care-previews" style="--preview-count:4">
-              <span class="care-preview"><img src="assets/images/care/care-11.png" alt="질문·답변과 추가 질문 화면" width="1179" height="2556" loading="lazy"></span>
-              <a class="care-preview" href="assets/images/care/care-13.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 질의응답 목록" aria-label="질의응답 목록 화면 확대"><img src="assets/images/care/care-13.png" alt="질의응답 목록과 답변 상태 화면" width="1179" height="2556" loading="lazy"></a>
-              <a class="care-preview" href="assets/images/care/care-12.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 수강후기 목록" aria-label="수강후기 목록 화면 확대"><img src="assets/images/care/care-12.png" alt="수강후기 목록 화면" width="1179" height="2556" loading="lazy"></a>
-              <a class="care-preview" href="assets/images/care/care-10.png" data-lightbox data-gallery="care-questions" data-caption="질의응답 및 수강후기 · 수강후기 상세" aria-label="수강후기 상세 화면 확대"><img src="assets/images/care/care-10.png" alt="수강후기 상세 화면" width="1179" height="2556" loading="lazy"></a>
-            </div>
-            <span class="care-preview-note">화면 4장 · 클릭하여 확대</span>
-          </article>
+            <div class="care-screen-controls"><button type="button" class="care-screen-prev" aria-label="이전 관리 화면">이전</button><p class="care-screen-status" aria-live="polite" aria-atomic="true">테스트 성적표 확인 · 1 / 2</p><button type="button" class="care-screen-next" aria-label="다음 관리 화면">다음</button></div>
+          </div>
         </div>
       </div>
     </section>

@@ -91,6 +91,69 @@
     dialog.addEventListener('close', () => currentAnchor?.focus({ preventScroll: true }));
   }
 
+  const careExplorer = document.querySelector('.care-explorer');
+  if (careExplorer) {
+    const tabs = [...careExplorer.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
+    const previous = careExplorer.querySelector('.care-screen-prev');
+    const next = careExplorer.querySelector('.care-screen-next');
+    const status = careExplorer.querySelector('.care-screen-status');
+    let category = 0;
+    let slide = 0;
+    const renderCare = () => {
+      tabs.forEach((tab, index) => {
+        const selected = index === category;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        panels[index].hidden = !selected;
+      });
+      const slides = [...panels[category].querySelectorAll('.care-screen-image')];
+      slides.forEach((image, index) => image.classList.toggle('is-active', index === slide));
+      previous.hidden = next.hidden = slides.length < 2;
+      status.textContent = `${tabs[category].firstElementChild.textContent} · ${slide + 1} / ${slides.length}`;
+    };
+    const selectCare = (index) => {
+      category = index;
+      slide = 0;
+      renderCare();
+    };
+    const moveCare = (direction) => {
+      const count = panels[category].querySelectorAll('.care-screen-image').length;
+      slide = (slide + direction + count) % count;
+      renderCare();
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectCare(index));
+      tab.addEventListener('keydown', (event) => {
+        let target;
+        if (event.key === 'ArrowDown') target = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowUp') target = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') target = 0;
+        else if (event.key === 'End') target = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        selectCare(target);
+        tabs[target].focus({ preventScroll: true });
+      });
+    });
+    previous.addEventListener('click', () => moveCare(-1));
+    next.addEventListener('click', () => moveCare(1));
+    careExplorer.querySelector('.care-phone-screen').addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') { event.preventDefault(); moveCare(-1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); moveCare(1); }
+    });
+    // Keep the phone on the same image after browsing its enlarged gallery.
+    dialog?.addEventListener('close', () => {
+      const slides = [...panels[category].querySelectorAll('.care-screen-image')];
+      const index = slides.indexOf(currentAnchor);
+      if (index < 0) return;
+      slide = index;
+      renderCare();
+      currentAnchor.focus({ preventScroll: true });
+    });
+    renderCare();
+  }
+
   const bookDialog = document.querySelector('#book-dialog');
   const bookOpener = document.querySelector('[data-book-preview]');
   if (bookDialog && bookOpener && typeof bookDialog.showModal === 'function') {
