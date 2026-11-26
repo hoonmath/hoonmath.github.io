@@ -59,7 +59,7 @@
     caption.textContent = `${anchor.dataset.caption} (${images.indexOf(anchor) + 1} / ${images.length})`;
     const isCare = !!anchor.closest('#care');
     dialog.classList.toggle('lightbox-care', isCare);
-    dialog.querySelector('[data-lightbox-heading]').textContent = isCare ? 'LEARNING CARE · 이용 화면' : 'CLASS MATERIALS · 2025';
+    dialog.querySelector('[data-lightbox-heading]').textContent = isCare ? 'LEARNING CARE · 이용 화면' : 'CLASS MATERIALS · 교재 표지';
     dialog.querySelector('.lightbox-stage').scrollTop = 0;
     dialog.querySelectorAll('.lightbox-prev, .lightbox-next').forEach((button) => { button.hidden = images.length < 2; });
   };
@@ -89,6 +89,169 @@
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
     });
     dialog.addEventListener('close', () => currentAnchor?.focus({ preventScroll: true }));
+  }
+
+  const bookDialog = document.querySelector('#book-dialog');
+  const bookOpener = document.querySelector('[data-book-preview]');
+  if (bookDialog && bookOpener && typeof bookDialog.showModal === 'function') {
+    const pageNumbers = [6, 7, 14, 15];
+    const pageUrl = (index) => `assets/previews/bon-common-math1/page-${pageNumbers[index]}.webp`;
+    const compactBook = window.matchMedia('(max-width: 700px)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const viewport = bookDialog.querySelector('.book-viewport');
+    const spread = bookDialog.querySelector('.book-spread');
+    const left = bookDialog.querySelector('#book-left');
+    const right = bookDialog.querySelector('#book-right');
+    const sheet = bookDialog.querySelector('.book-turning-sheet');
+    const previous = bookDialog.querySelector('.book-prev');
+    const next = bookDialog.querySelector('.book-next');
+    const zoom = bookDialog.querySelector('.book-zoom');
+    const ranges = [...bookDialog.querySelectorAll('[data-book-spread]')];
+    const loadedPages = new Map();
+    let pageIndex = 0;
+    let turning = false;
+    let generation = 0;
+    let activeAnimation = null;
+    const loadPage = (index) => {
+      if (!loadedPages.has(index)) {
+        const preload = new Image();
+        preload.src = pageUrl(index);
+        loadedPages.set(index, preload.decode().catch(() => {}));
+      }
+      return loadedPages.get(index);
+    };
+    const step = () => compactBook.matches ? 1 : 2;
+    const updateControls = () => {
+      const focused = document.activeElement;
+      previous.disabled = turning || pageIndex === 0;
+      next.disabled = turning || pageIndex + step() >= pageNumbers.length;
+      zoom.disabled = turning;
+      ranges.forEach((button) => {
+        button.disabled = turning;
+        button.setAttribute('aria-pressed', String(Number(button.dataset.bookSpread) === Math.floor(pageIndex / 2) * 2));
+      });
+      if (bookDialog.open && focused instanceof HTMLButtonElement && focused.disabled && bookDialog.contains(focused)) viewport.focus({ preventScroll: true });
+    };
+    const setPage = (element, index) => {
+      element.src = pageUrl(index);
+      element.alt = `본 공통수학1 내지 PDF ${pageNumbers[index]}쪽`;
+    };
+    const renderBook = (index) => {
+      pageIndex = compactBook.matches ? index : Math.floor(index / 2) * 2;
+      setPage(left, pageIndex);
+      right.parentElement.hidden = compactBook.matches;
+      if (!compactBook.matches) setPage(right, pageIndex + 1);
+      const location = compactBook.matches
+        ? `PDF ${pageNumbers[pageIndex]}쪽 · ${pageIndex + 1} / 4`
+        : `PDF ${pageNumbers[pageIndex]}–${pageNumbers[pageIndex + 1]}쪽 · ${pageIndex / 2 + 1} / 2`;
+      bookDialog.querySelector('.book-location').textContent = location;
+      updateControls();
+    };
+    const turnTo = async (requested) => {
+      const target = compactBook.matches ? requested : Math.floor(requested / 2) * 2;
+      if (turning || target < 0 || target >= pageNumbers.length || target === pageIndex) return;
+      const token = ++generation;
+      turning = true;
+      updateControls();
+      try {
+        await Promise.all([loadPage(target), loadPage(Math.min(target + 1, 3))]);
+        if (token !== generation) return;
+        viewport.scrollTo(0, 0);
+        if (reducedMotion.matches || bookDialog.classList.contains('is-zoomed')) {
+          renderBook(target);
+        } else if (compactBook.matches) {
+          const forward = target > pageIndex;
+          renderBook(target);
+          activeAnimation = spread.animate([
+            { transform: `perspective(1000px) rotateY(${forward ? 14 : -14}deg)`, opacity: .55 },
+            { transform: 'perspective(1000px) rotateY(0deg)', opacity: 1 }
+          ], { duration: 300, easing: 'ease-out' });
+          await activeAnimation.finished.catch(() => {});
+        } else {
+          const forward = target > pageIndex;
+          sheet.dataset.direction = forward ? 'next' : 'previous';
+          sheet.querySelector('.book-sheet-front img').src = pageUrl(forward ? pageIndex + 1 : pageIndex);
+          sheet.querySelector('.book-sheet-back img').src = pageUrl(forward ? target : target + 1);
+          if (forward) setPage(right, target + 1);
+          else setPage(left, target);
+          sheet.hidden = false;
+          activeAnimation = sheet.animate([
+            { transform: 'rotateY(0deg)' },
+            { transform: `rotateY(${forward ? -180 : 180}deg)` }
+          ], { duration: 520, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' });
+          await activeAnimation.finished.catch(() => {});
+          if (token === generation) renderBook(target);
+        }
+      } finally {
+        if (token === generation) {
+          sheet.hidden = true;
+          activeAnimation?.cancel();
+          activeAnimation = null;
+          turning = false;
+          updateControls();
+        }
+      }
+    };
+    bookOpener.addEventListener('click', (event) => {
+      event.preventDefault();
+      generation++;
+      activeAnimation?.cancel();
+      turning = false;
+      sheet.hidden = true;
+      bookDialog.classList.remove('is-zoomed');
+      zoom.setAttribute('aria-pressed', 'false');
+      zoom.textContent = '크게 보기';
+      renderBook(0);
+      bookDialog.showModal();
+      viewport.scrollTo(0, 0);
+      pageNumbers.forEach((_, index) => loadPage(index));
+    });
+    previous.addEventListener('click', () => turnTo(pageIndex - step()));
+    next.addEventListener('click', () => turnTo(pageIndex + step()));
+    ranges.forEach((button) => button.addEventListener('click', () => turnTo(Number(button.dataset.bookSpread))));
+    zoom.addEventListener('click', () => {
+      const enlarged = bookDialog.classList.toggle('is-zoomed');
+      zoom.setAttribute('aria-pressed', String(enlarged));
+      zoom.textContent = enlarged ? '전체 보기' : '크게 보기';
+      viewport.scrollTo(0, 0);
+    });
+    bookDialog.querySelector('.book-close').addEventListener('click', () => bookDialog.close());
+    bookDialog.addEventListener('keydown', (event) => {
+      if (bookDialog.classList.contains('is-zoomed')) return;
+      if (event.key === 'ArrowLeft') { event.preventDefault(); turnTo(pageIndex - step()); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); turnTo(pageIndex + step()); }
+    });
+    let touchStart = null;
+    viewport.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'touch' && !bookDialog.classList.contains('is-zoomed')) touchStart = { x: event.clientX, y: event.clientY };
+    });
+    viewport.addEventListener('pointerup', (event) => {
+      if (!touchStart) return;
+      const dx = event.clientX - touchStart.x;
+      const dy = event.clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) turnTo(pageIndex + (dx < 0 ? step() : -step()));
+    });
+    viewport.addEventListener('pointercancel', () => { touchStart = null; });
+    bookDialog.addEventListener('click', (event) => {
+      const rect = bookDialog.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) bookDialog.close();
+    });
+    bookDialog.addEventListener('close', () => {
+      generation++;
+      activeAnimation?.cancel();
+      turning = false;
+      sheet.hidden = true;
+      touchStart = null;
+      bookOpener.focus({ preventScroll: true });
+    });
+    compactBook.addEventListener('change', () => {
+      generation++;
+      activeAnimation?.cancel();
+      turning = false;
+      sheet.hidden = true;
+      if (bookDialog.open) renderBook(pageIndex);
+    });
   }
 
   if ('IntersectionObserver' in window && navigation) {
