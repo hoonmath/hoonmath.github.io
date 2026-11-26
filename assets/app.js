@@ -44,6 +44,86 @@
     });
   });
 
+  const featureCarousel = document.querySelector('.feature-carousel');
+  if (featureCarousel) {
+    const slides = [...featureCarousel.querySelectorAll('.feature-slide')];
+    const selectors = [...featureCarousel.querySelectorAll('[data-feature]')];
+    const playback = featureCarousel.querySelector('.feature-autoplay');
+    const status = featureCarousel.querySelector('.feature-status');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let index = 0;
+    let paused = reducedMotion.matches;
+    let hovered = false;
+    let focused = false;
+    let inView = !('IntersectionObserver' in window);
+    let timer;
+    const showFeature = (nextIndex, announce = false) => {
+      index = nextIndex;
+      slides.forEach((slide, position) => {
+        const active = position === index;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+        slide.inert = !active;
+      });
+      selectors.forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
+      if (announce) status.textContent = `${index + 1} / ${slides.length} · ${slides[index].querySelector('h3').textContent}`;
+    };
+    const canPlay = () => !paused && !hovered && !focused && inView && !document.hidden;
+    const scheduleFeature = () => {
+      clearTimeout(timer);
+      if (!canPlay()) return;
+      timer = setTimeout(() => {
+        if (canPlay()) showFeature((index + 1) % slides.length);
+        scheduleFeature();
+      }, 7000);
+    };
+    const updatePlayback = () => {
+      playback.textContent = paused ? '자동재생' : '일시정지';
+      playback.setAttribute('aria-pressed', String(paused));
+      playback.setAttribute('aria-label', paused ? '수업 특징 자동재생 시작' : '수업 특징 자동재생 일시정지');
+      scheduleFeature();
+    };
+    selectors.forEach((button, position) => button.addEventListener('click', () => {
+      showFeature(position, true);
+      scheduleFeature();
+    }));
+    playback.addEventListener('click', () => {
+      paused = !paused;
+      updatePlayback();
+    });
+    featureCarousel.addEventListener('pointerenter', (event) => {
+      if (event.pointerType !== 'mouse') return;
+      hovered = true;
+      scheduleFeature();
+    });
+    featureCarousel.addEventListener('pointerleave', (event) => {
+      if (event.pointerType !== 'mouse') return;
+      hovered = false;
+      scheduleFeature();
+    });
+    featureCarousel.addEventListener('focusin', () => { focused = true; scheduleFeature(); });
+    featureCarousel.addEventListener('focusout', (event) => {
+      if (featureCarousel.contains(event.relatedTarget)) return;
+      focused = false;
+      scheduleFeature();
+    });
+    document.addEventListener('visibilitychange', scheduleFeature);
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) paused = true;
+      updatePlayback();
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting && entry.intersectionRatio >= .25;
+        scheduleFeature();
+      }, { threshold: [0, .25] }).observe(featureCarousel);
+    }
+    featureCarousel.querySelector('.feature-controls').hidden = false;
+    featureCarousel.querySelector('.feature-track').setAttribute('aria-live', 'off');
+    showFeature(0);
+    updatePlayback();
+  }
+
   const dialog = document.querySelector('#image-dialog');
   const image = document.querySelector('#lightbox-image');
   const caption = document.querySelector('#lightbox-caption');
