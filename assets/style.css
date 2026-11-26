@@ -141,10 +141,11 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 #philosophy .philosophy-layout{grid-template-columns:minmax(0,1fr);gap:32px;align-items:start}
 #philosophy .section-intro{position:static}#philosophy .section-intro h2{font-size:clamp(30px,3vw,40px);line-height:1.5}
 .teaching-features{min-width:0;border:1px solid var(--line);border-top:3px solid var(--accent);background:#fff}
-.teaching-features>li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:18px;align-items:start;padding:20px 24px}
+.teaching-features>li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:start;padding:16px 18px}
 .teaching-features>li+li{border-top:1px solid var(--line)}.teaching-features>li:nth-child(odd){background:#f7faff}
-.teaching-feature-number{display:flex;align-items:center;justify-content:center;min-height:34px;background:var(--accent-soft);color:var(--accent);font-size:18px;font-weight:750;line-height:1.5;font-variant-numeric:tabular-nums}
+.teaching-feature-number{display:flex;align-items:center;justify-content:center;min-height:30px;background:var(--accent-soft);color:var(--accent);font-size:17px;font-weight:750;line-height:1.5;font-variant-numeric:tabular-nums}
 .teaching-features p{margin:0;color:#405570;font-size:clamp(16px,calc(1.6vw + .6px),18px);line-height:1.9}
 @media(max-width:960px){#philosophy .philosophy-layout{grid-template-columns:1fr;gap:28px}}
+@media(min-width:1200px){#philosophy .philosophy-layout{grid-template-columns:210px minmax(0,1fr);gap:24px}.teaching-features p{font-size:clamp(16px,calc(1.25vw + 1px),18px)}}
 @media(max-width:600px){.teaching-features>li{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:18px 16px}.teaching-feature-number{min-height:28px;font-size:16px}.teaching-features p{font-size:16px;line-height:1.9}#philosophy .section-intro h2{font-size:28px}}
 @media print{.hero-visual .hero-caption{position:static;width:100%;margin:0}}
