@@ -137,16 +137,14 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 /* Distinguish the two schools with quiet blue and warm ivory backgrounds. */
 .class-card-daeil{background:#f3f7fe;border-top-color:#2458a6}.class-card-gwanak{background:#fffbf3;border-top-color:#c5983d}
 
-/* Five numbered teaching features, shown one at a time with a stable card height. */
-#philosophy .philosophy-layout{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:64px;align-items:center}
+/* Five concise numbered rows keep every teaching feature visible together. */
+#philosophy .philosophy-layout{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:64px;align-items:start}
 #philosophy .section-intro{position:static}#philosophy .section-intro h2{font-size:clamp(30px,3vw,40px);line-height:1.5}
-.feature-carousel{min-width:0}.feature-track{gap:20px}.principles .feature-slide,.principles .feature-slide:last-child{min-width:0;min-height:310px;padding:32px 36px 36px;background:#f5f8fe;border:1px solid #dce4f0;border-top:3px solid var(--accent);border-radius:0}
-.feature-slide-heading{display:flex;align-items:center;gap:20px;margin-bottom:24px}.feature-number{flex-shrink:0;color:var(--accent);font-size:46px;font-weight:750;line-height:1.1;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
-.feature-slide h3{font-size:25px;font-weight:750;color:var(--ink)}.principles .feature-slide p{margin:0;color:#405570;font-size:19px;line-height:1.95}
-.js .feature-track{gap:0}.js .feature-slide{grid-area:1 / 1;opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none;transition:opacity .42s ease,transform .42s ease,visibility .42s}
-.js .feature-slide.is-active{opacity:1;visibility:visible;transform:none;pointer-events:auto}
-.feature-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:20px}.feature-selectors{display:flex;gap:6px;flex-wrap:wrap}
-.feature-controls button{min-width:44px;min-height:44px;padding:8px 12px;border:1px solid var(--line);background:#fff;color:var(--accent);font-size:14px;line-height:1.5}.feature-controls button:hover{background:var(--accent-soft)}.feature-selectors [aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}.feature-controls .feature-autoplay{min-width:86px;color:var(--muted)}
+.teaching-features{min-width:0;border:1px solid var(--line);border-top:3px solid var(--accent);background:#fff}
+.teaching-features>li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:20px;align-items:start;padding:20px 26px}
+.teaching-features>li+li{border-top:1px solid var(--line)}.teaching-features>li:nth-child(odd){background:#f7faff}
+.teaching-feature-number{display:flex;align-items:center;justify-content:center;min-height:34px;background:var(--accent-soft);color:var(--accent);font-size:18px;font-weight:750;line-height:1.5;font-variant-numeric:tabular-nums}
+.teaching-features p{margin:0;color:#405570;font-size:18px;line-height:1.9}
 @media(max-width:960px){#philosophy .philosophy-layout{grid-template-columns:1fr;gap:28px}}
-@media(max-width:600px){.principles .feature-slide,.principles .feature-slide:last-child{min-height:300px;padding:24px 22px 28px}.feature-slide-heading{gap:14px;margin-bottom:20px}.feature-number{font-size:38px}.feature-slide h3{font-size:21px}.principles .feature-slide p{font-size:17px;line-height:1.95}#philosophy .section-intro h2{font-size:28px}.feature-controls{margin-top:16px;gap:10px}}
-@media print{.hero-visual .hero-caption{position:static;width:100%;margin:0}.js .feature-track{display:grid;gap:20px}.js .feature-slide{grid-area:auto;opacity:1;visibility:visible;transform:none}.feature-controls{display:none}}
+@media(max-width:600px){.teaching-features>li{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:18px 16px}.teaching-feature-number{min-height:28px;font-size:16px}.teaching-features p{font-size:16px;line-height:1.9}#philosophy .section-intro h2{font-size:28px}}
+@media print{.hero-visual .hero-caption{position:static;width:100%;margin:0}}
