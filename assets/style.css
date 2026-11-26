@@ -88,6 +88,7 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 #curriculum .roadmap{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 #curriculum .roadmap li{min-width:0;padding:30px 32px 34px;border:1px solid #dce4f0;border-top:3px solid var(--accent);border-radius:0;background:#f7faff}
 #curriculum .step-label{padding:5px 12px;background:var(--accent);color:#fff;font-size:.875rem;font-weight:750;letter-spacing:.08em;line-height:1.6}
+#curriculum .step-heading{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}#curriculum .step-heading .step-label{flex-shrink:0}#curriculum .step-book{color:#63748a;font-size:.875rem;font-weight:400;line-height:1.8}
 #curriculum .roadmap h3{margin-top:16px;font-size:1.625rem;font-weight:750;color:var(--ink)}
 #curriculum .roadmap p{margin-top:16px;font-size:1rem;line-height:1.9;color:#405570;letter-spacing:-.025em}
 #curriculum .roadmap p strong{color:#1e5098;font-weight:700}
