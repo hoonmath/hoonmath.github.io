@@ -57,6 +57,7 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 
 .philosophy-layout .teaching-promise{color:#165dce;font-weight:750}
 .section-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.section-actions .button{max-width:100%;text-align:center}
+.care-system-actions{align-items:center;gap:12px 20px}.care-login-guide{min-width:0;color:#63748a;font-size:.875rem;line-height:1.8;font-weight:400;letter-spacing:-.025em}
 @media(max-width:600px){.section-actions{margin-top:20px}.section-actions .button{width:100%}}
 
 /* Cumulative learning management, with six categories in reading order. */
