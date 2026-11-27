@@ -53,7 +53,19 @@
     return details;
   };
   disclosure(home.querySelector('.hero-promise'), '최서훈 수학의 약속', 'mobile-promise');
-  disclosure(home.querySelector('.teacher-credentials'), '학력·자격 보기', 'mobile-profile-details');
+  const profile = home.querySelector('.hero-caption');
+  profile.removeAttribute('aria-labelledby');
+  profile.setAttribute('aria-label', '선생님 소개');
+  const credentials = profile.querySelector('.teacher-credentials');
+  credentials.setAttribute('aria-label', '강사 학력과 자격 및 출강 학원');
+  credentials.lastElementChild.textContent = '정교사 2급 자격증 보유';
+  const affiliation = profile.querySelector('.teacher-affiliation');
+  const workplace = document.createElement('li');
+  workplace.textContent = affiliation.textContent;
+  credentials.append(workplace);
+  disclosure(credentials, '선생님 소개', 'mobile-profile-details');
+  profile.querySelector('.teacher-name').remove();
+  affiliation.remove();
 
   const groups = [];
   const addOptions = (container, items, label, itemLabel) => {

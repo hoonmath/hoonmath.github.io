@@ -27,20 +27,21 @@
 .mobile-view .section-actions .button{width:100%}
 
 /* A compact home screen keeps the portrait, identity and six destinations together. */
-.mobile-view .hero-inner{display:grid;grid-template-columns:minmax(0,1fr) 112px;column-gap:12px;row-gap:16px;padding-block:20px 26px}
+.mobile-view .hero-inner{display:grid;grid-template-columns:minmax(0,1fr) 160px;column-gap:12px;row-gap:16px;padding-block:20px 26px}
 .mobile-view .hero-copy,.mobile-view .hero-visual{display:contents}
 .mobile-view .hero-copy .eyebrow{grid-column:1 / -1;grid-row:1;margin:0}
-.mobile-view h1{grid-column:1;grid-row:2;align-self:center;font-size:32px;line-height:1.17;letter-spacing:-.065em}
+.mobile-view h1{grid-column:1;grid-row:2;align-self:center;font-size:30px;line-height:1.17;letter-spacing:-.065em}
 .mobile-view .hero-signature{font-size:22px;line-height:1.4;margin-top:12px}
 .mobile-view .hero-visual .portrait{grid-column:2;grid-row:2;align-self:end;width:100%;max-width:none;max-height:none;height:auto;margin:0;object-fit:contain}
-.mobile-view .hero-visual .hero-caption{grid-column:1 / -1;grid-row:3;display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;position:static;width:100%;max-width:none;margin:0;padding:12px 14px;background:#f7faff;border:1px solid var(--line);box-shadow:none}
+.mobile-view .hero-visual .hero-caption{grid-column:1 / -1;grid-row:3;display:block;position:static;width:100%;max-width:none;margin:0;padding:0;background:#f7faff;border:1px solid var(--line);box-shadow:none}
 .mobile-view .hero-caption .teacher-name{order:1;font-size:22px;gap:7px;margin:0}
 .mobile-view .teacher-subject{font-size:14px}
 .mobile-view .hero-caption .teacher-affiliation{order:2;margin:0 0 0 auto;padding:0;border:0;font-size:14px}
-.mobile-view .mobile-profile-details{order:3;width:100%;padding-top:5px;border-top:1px solid var(--line)}
-.mobile-view .mobile-profile-details summary{min-height:32px;padding:0;font-size:14px;font-weight:500;color:var(--muted)}
-.mobile-view .hero-caption .teacher-credentials{margin-top:8px;font-size:14px;line-height:1.8}
+.mobile-view .mobile-profile-details{width:100%;padding:0;border:0}
+.mobile-view .mobile-profile-details summary{min-height:46px;padding:10px 14px;font-size:15px;font-weight:600;color:var(--ink)}
+.mobile-view .hero-caption .teacher-credentials{margin:0;padding:0 14px 14px;font-size:14px;line-height:1.8}
 .mobile-view .hero-caption .teacher-credentials li+li{margin-top:4px}
+.mobile-view .hero-caption .teacher-credentials li:last-child{margin-top:8px;color:var(--accent);font-weight:600}
 .mobile-view .mobile-home-menu{grid-column:1 / -1;grid-row:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .mobile-view .mobile-home-menu a{display:flex;align-items:center;justify-content:center;min-height:54px;padding:10px 6px;background:var(--accent-soft);border:1px solid #c8d6ea;color:var(--accent);font-size:15px;font-weight:700;line-height:1.5;text-align:center}
 .mobile-view .hero-shortcuts{grid-column:1 / -1;grid-row:5;gap:8px;margin:0}
@@ -117,5 +118,6 @@
 .mobile-view .book-viewport{max-height:calc(100dvh - 270px);padding:12px}
 .mobile-view .book-spread{grid-template-columns:1fr;width:min(100%,calc(70.7dvh - 215px));aspect-ratio:595 / 841}
 .mobile-view .book-spread::after{display:none}.mobile-view .book-dialog.is-zoomed .book-spread{width:760px}
-@media(max-width:359px){.mobile-view .hero-inner{grid-template-columns:minmax(0,1fr) 92px;column-gap:8px}.mobile-view h1{font-size:28px}.mobile-view .hero-signature{font-size:20px}.mobile-view .hero-caption .teacher-name{font-size:20px}.mobile-view .hero-caption .teacher-affiliation{font-size:13px}}
+@media(max-width:389px){.mobile-view .hero-inner{grid-template-columns:minmax(0,1fr) 144px;column-gap:10px}.mobile-view h1{font-size:28px}}
+@media(max-width:359px){.mobile-view .hero-inner{grid-template-columns:minmax(0,1fr) 128px;column-gap:8px}.mobile-view h1{font-size:25px}.mobile-view .hero-signature{font-size:20px}}
 @media print{.mobile-view main>section[hidden],.mobile-view .class-card[hidden],.mobile-view .roadmap>li[hidden]{display:block!important}.mobile-view .mobile-page-nav,.mobile-view .mobile-home-menu,.mobile-view .mobile-home-link,.mobile-view .mobile-options,.mobile-view .mobile-contact{display:none!important}}

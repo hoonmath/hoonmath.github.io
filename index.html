@@ -12,9 +12,15 @@
   <link rel="canonical" href="https://hoonmath.github.io/">
   <link rel="icon" href="assets/favicon.svg?v=20261124-logo" type="image/svg+xml">
   <link rel="preload" href="assets/images/choi-seohoon-cutout-20261124.webp" as="image">
-  <script>if (new URLSearchParams(location.search).get('view') === 'mobile') document.documentElement.classList.add('mobile-view');</script>
-  <link rel="stylesheet" href="assets/style.css?v=20261127-mobile-view">
-  <link rel="stylesheet" href="assets/mobile-view.css?v=20261127-mobile-view">
+  <script>
+    (() => {
+      const view = new URLSearchParams(location.search).get('view');
+      if (view === 'mobile') document.documentElement.classList.add('mobile-view');
+      else if (view !== 'desktop') document.documentElement.classList.add('view-choice-pending');
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/style.css?v=20261127-screen-choice">
+  <link rel="stylesheet" href="assets/mobile-view.css?v=20261127-screen-choice">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="최서훈수학">
@@ -39,7 +45,8 @@
     ]
   }
   </script>
-  <script src="assets/mobile-view.js?v=20261127-mobile-view" defer></script>
+  <script src="assets/view-choice.js?v=20261127-screen-choice" defer></script>
+  <script src="assets/mobile-view.js?v=20261127-screen-choice" defer></script>
   <script src="assets/app.js?v=20261127-mobile-view" defer></script>
 </head>
 <body>
@@ -240,6 +247,14 @@
   <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="./" aria-label="최서훈 수학 홈"><img src="assets/brand/hoonmath-wordmark.svg" alt="HOONMATH" width="2010" height="237" loading="lazy"></a><p>생각의 깊이를 더하다.</p><span>© <span data-year>2026</span> HOONMATH</span><a href="?view=mobile" data-view-switch>모바일에서 보기</a><a href="#main">맨 위로</a></div><div class="container academy-contact"><strong>목동 예섬학원</strong><address>오목로 336 협성빌딩 5층</address><a href="tel:0262128822">TEL) 02-6212-8822</a></div></footer>
   <div class="mobile-contact" aria-label="시간표와 카카오 상담"><a href="http://yesum.co.kr/bbs/board.php?bo_table=yb_table04_16" target="_blank" rel="noopener noreferrer">목동 예섬학원 공식 시간표 바로가기</a><a href="https://pf.kakao.com/_vxdNrG/chat" target="_blank" rel="noopener noreferrer">카카오 상담</a></div>
 
+  <dialog class="view-choice-dialog" id="view-choice-dialog" aria-labelledby="view-choice-title" aria-describedby="view-choice-description">
+    <h2 id="view-choice-title">보기 편한 화면을<br>선택해 주세요.</h2>
+    <p id="view-choice-description">모바일과 PC 중 원하는 화면으로 확인하세요.</p>
+    <div class="view-choice-options">
+      <a class="view-choice-card view-choice-mobile" href="?view=mobile" data-view-choice="mobile"><svg viewBox="0 0 32 40" width="32" height="40" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="22" height="36" rx="3"/><path d="M12 7h8M13 33h6"/></svg><strong>모바일에서 보기</strong><span>메뉴를 선택해 간편하게 확인</span></a>
+      <a class="view-choice-card view-choice-desktop" href="?view=desktop" data-view-choice="desktop"><svg viewBox="0 0 40 40" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="36" height="25" rx="2"/><path d="M14 36h12M20 30v6"/></svg><strong>PC에서 보기</strong><span>전체 내용을 한 페이지에서 확인</span></a>
+    </div>
+  </dialog>
   <dialog class="lightbox" id="image-dialog" aria-labelledby="lightbox-caption"><div class="lightbox-top"><span data-lightbox-heading>CLASS MATERIALS · 교재 표지</span><button class="lightbox-close" type="button" aria-label="확대 이미지 닫기">닫기 <span aria-hidden="true">×</span></button></div><div class="lightbox-stage"><img id="lightbox-image" src="assets/images/covers/bon.webp" alt="확대 이미지"></div><div class="lightbox-bottom"><button type="button" class="lightbox-prev" aria-label="이전 이미지">이전</button><p id="lightbox-caption" aria-live="polite"></p><button type="button" class="lightbox-next" aria-label="다음 이미지">다음</button></div></dialog>
   <dialog class="book-dialog" id="book-dialog" aria-labelledby="book-title">
     <div class="book-header"><div><p class="eyebrow">BOOK PREVIEW</p><h2 id="book-title">본 공통수학1</h2></div><button class="book-close" type="button" aria-label="교재 미리보기 닫기">닫기 <span aria-hidden="true">×</span></button></div>
