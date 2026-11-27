@@ -33,6 +33,9 @@
 .mobile-view h1{grid-column:1;grid-row:2;align-self:center;font-size:30px;line-height:1.17;letter-spacing:-.065em}
 .mobile-view .hero-signature{font-size:22px;line-height:1.4;margin-top:12px}
 .mobile-view .hero-visual .portrait{grid-column:2;grid-row:2;align-self:end;width:100%;max-width:none;max-height:none;height:auto;margin:0;object-fit:contain}
+.mobile-view .mobile-portrait-trigger{grid-column:2;grid-row:2;align-self:end;width:100%}
+.mobile-view .mobile-promise-trigger,.mobile-view .mobile-portrait-trigger{display:block;padding:0;border:0;background:transparent;color:inherit;text-align:inherit;font:inherit;line-height:inherit;letter-spacing:inherit}
+.mobile-view .mobile-promise-trigger{width:100%}
 .mobile-view .hero-visual .hero-caption{grid-column:1 / -1;grid-row:3;display:block;position:static;width:100%;max-width:none;margin:0;padding:0;background:#f7faff;border:1px solid var(--line);box-shadow:none}
 .mobile-view .hero-caption .teacher-name{order:1;font-size:22px;gap:7px;margin:0}
 .mobile-view .teacher-subject{font-size:14px}
@@ -47,10 +50,15 @@
 .mobile-view .hero-shortcuts{grid-column:1 / -1;grid-row:5;gap:8px;margin:0}
 .mobile-view .hero-shortcuts strong{min-height:44px;padding:10px 3px;font-size:14px;background:#fff}
 .mobile-view .hero-shortcuts span{margin-top:6px;font-size:12px;line-height:1.6}
-.mobile-view .mobile-promise{grid-column:1 / -1;grid-row:6;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.mobile-view .mobile-promise summary{min-height:44px;padding:10px 0;font-size:14px;font-weight:600}
 .mobile-view .hero-promise{margin:0 0 16px;font-size:16px;line-height:1.85}
 .mobile-view .hero-promise>span:first-child{font-size:17px}
+.mobile-view .mobile-promise-dialog{width:min(540px,calc(100% - 32px));max-width:none;max-height:calc(100dvh - 32px);padding:22px 24px;border:1px solid var(--line);border-radius:0;background:#fff;color:var(--ink);box-shadow:0 20px 80px #132a4633;overflow:auto}
+.mobile-view .mobile-promise-dialog::backdrop{background:#132a4699;backdrop-filter:blur(5px)}
+.mobile-view .mobile-promise-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.mobile-view .mobile-promise-header h2{font-size:21px;font-weight:750;line-height:1.5}
+.mobile-view .mobile-promise-close{flex-shrink:0;min-height:44px;padding:8px 10px;background:transparent;color:var(--muted);font-size:14px}
+.mobile-view .mobile-promise-dialog .hero-promise{margin:0;font-size:17px;line-height:1.95}
+.mobile-view .mobile-promise-dialog .hero-promise>span:first-child{font-size:18px}
 .mobile-view .mobile-options{display:flex;gap:6px;margin-top:18px}
 .mobile-view .mobile-options button{flex:1;min-width:0;min-height:44px;padding:9px 6px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:14px;line-height:1.5}
 .mobile-view .mobile-options [aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:700}
