@@ -54,8 +54,7 @@
 .mobile-view .hero-promise>span:first-child{font-size:17px}
 .mobile-view .mobile-promise-dialog{width:min(540px,calc(100% - 32px));max-width:none;max-height:calc(100dvh - 32px);padding:22px 24px;border:1px solid var(--line);border-radius:0;background:#fff;color:var(--ink);box-shadow:0 20px 80px #132a4633;overflow:auto}
 .mobile-view .mobile-promise-dialog::backdrop{background:#132a4699;backdrop-filter:blur(5px)}
-.mobile-view .mobile-promise-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.mobile-view .mobile-promise-header h2{font-size:21px;font-weight:750;line-height:1.5}
+.mobile-view .mobile-promise-header{display:flex;align-items:center;justify-content:flex-end;margin-bottom:8px}
 .mobile-view .mobile-promise-close{flex-shrink:0;min-height:44px;padding:8px 10px;background:transparent;color:var(--muted);font-size:14px}
 .mobile-view .mobile-promise-dialog .hero-promise{margin:0;font-size:17px;line-height:1.95}
 .mobile-view .mobile-promise-dialog .hero-promise>span:first-child{font-size:18px}

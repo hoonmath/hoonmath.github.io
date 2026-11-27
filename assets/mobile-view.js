@@ -56,18 +56,15 @@
   const promiseDialog = document.createElement('dialog');
   promiseDialog.id = 'mobile-promise-dialog';
   promiseDialog.className = 'mobile-promise-dialog';
-  promiseDialog.setAttribute('aria-labelledby', 'mobile-promise-title');
+  promiseDialog.setAttribute('aria-label', '소개 문구');
   const promiseHeader = document.createElement('div');
   promiseHeader.className = 'mobile-promise-header';
-  const promiseTitle = document.createElement('h2');
-  promiseTitle.id = 'mobile-promise-title';
-  promiseTitle.textContent = '최서훈 수학의 약속';
   const promiseClose = document.createElement('button');
   promiseClose.type = 'button';
   promiseClose.className = 'mobile-promise-close';
   promiseClose.textContent = '닫기';
-  promiseClose.setAttribute('aria-label', '최서훈 수학의 약속 닫기');
-  promiseHeader.append(promiseTitle, promiseClose);
+  promiseClose.setAttribute('aria-label', '팝업 닫기');
+  promiseHeader.append(promiseClose);
   promiseDialog.append(promiseHeader, promise);
   document.body.append(promiseDialog);
   let promiseOpener = null;
@@ -77,7 +74,7 @@
     button.className = className;
     button.setAttribute('aria-haspopup', 'dialog');
     button.setAttribute('aria-controls', promiseDialog.id);
-    button.title = '최서훈 수학의 약속 보기';
+    button.title = '소개 문구 보기';
     button.addEventListener('click', () => {
       promiseOpener = button;
       promiseDialog.showModal();
@@ -90,7 +87,7 @@
   heroTitle.append(titleTrigger);
   const portrait = home.querySelector('.portrait');
   const portraitTrigger = promiseTrigger('mobile-portrait-trigger');
-  portraitTrigger.setAttribute('aria-label', '프로필 사진: 최서훈 수학의 약속 보기');
+  portraitTrigger.setAttribute('aria-label', '프로필 사진: 소개 문구 보기');
   portrait.before(portraitTrigger);
   portraitTrigger.append(portrait);
   promiseClose.addEventListener('click', () => promiseDialog.close());
