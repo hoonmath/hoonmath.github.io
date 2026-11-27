@@ -12,7 +12,9 @@
   <link rel="canonical" href="https://hoonmath.github.io/">
   <link rel="icon" href="assets/favicon.svg?v=20261124-logo" type="image/svg+xml">
   <link rel="preload" href="assets/images/choi-seohoon-cutout-20261124.webp" as="image">
-  <link rel="stylesheet" href="assets/style.css?v=20261126-step-faq">
+  <script>if (new URLSearchParams(location.search).get('view') === 'mobile') document.documentElement.classList.add('mobile-view');</script>
+  <link rel="stylesheet" href="assets/style.css?v=20261127-mobile-view">
+  <link rel="stylesheet" href="assets/mobile-view.css?v=20261127-mobile-view">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="최서훈수학">
@@ -37,11 +39,12 @@
     ]
   }
   </script>
-  <script src="assets/app.js?v=20261126-features-list" defer></script>
+  <script src="assets/mobile-view.js?v=20261127-mobile-view" defer></script>
+  <script src="assets/app.js?v=20261127-mobile-view" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
-  <div class="utility-bar"><div class="container utility-inner"><a class="schedule-link" href="http://yesum.co.kr/bbs/board.php?bo_table=yb_table04_16" target="_blank" rel="noopener noreferrer" title="새 창에서 열기">목동 예섬학원 공식 시간표 바로가기</a></div></div>
+  <div class="utility-bar"><div class="container utility-inner"><a class="view-mode-link" href="?view=mobile" data-view-switch>모바일에서 보기</a><a class="schedule-link" href="http://yesum.co.kr/bbs/board.php?bo_table=yb_table04_16" target="_blank" rel="noopener noreferrer" title="새 창에서 열기">목동 예섬학원 공식 시간표 바로가기</a></div></div>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="./" aria-label="최서훈 수학 홈"><img class="brand-mark" src="assets/brand/hoonmath-mark.svg" alt="" aria-hidden="true" width="253" height="234"><span class="brand-name"><strong>최서훈</strong><span>수학</span></span></a>
@@ -234,7 +237,7 @@
 
   </main>
 
-  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="./" aria-label="최서훈 수학 홈"><img src="assets/brand/hoonmath-wordmark.svg" alt="HOONMATH" width="2010" height="237" loading="lazy"></a><p>생각의 깊이를 더하다.</p><span>© <span data-year>2026</span> HOONMATH</span><a href="#main">맨 위로</a></div><div class="container academy-contact"><strong>목동 예섬학원</strong><address>오목로 336 협성빌딩 5층</address><a href="tel:0262128822">TEL) 02-6212-8822</a></div></footer>
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-wordmark" href="./" aria-label="최서훈 수학 홈"><img src="assets/brand/hoonmath-wordmark.svg" alt="HOONMATH" width="2010" height="237" loading="lazy"></a><p>생각의 깊이를 더하다.</p><span>© <span data-year>2026</span> HOONMATH</span><a href="?view=mobile" data-view-switch>모바일에서 보기</a><a href="#main">맨 위로</a></div><div class="container academy-contact"><strong>목동 예섬학원</strong><address>오목로 336 협성빌딩 5층</address><a href="tel:0262128822">TEL) 02-6212-8822</a></div></footer>
   <div class="mobile-contact" aria-label="시간표와 카카오 상담"><a href="http://yesum.co.kr/bbs/board.php?bo_table=yb_table04_16" target="_blank" rel="noopener noreferrer">목동 예섬학원 공식 시간표 바로가기</a><a href="https://pf.kakao.com/_vxdNrG/chat" target="_blank" rel="noopener noreferrer">카카오 상담</a></div>
 
   <dialog class="lightbox" id="image-dialog" aria-labelledby="lightbox-caption"><div class="lightbox-top"><span data-lightbox-heading>CLASS MATERIALS · 교재 표지</span><button class="lightbox-close" type="button" aria-label="확대 이미지 닫기">닫기 <span aria-hidden="true">×</span></button></div><div class="lightbox-stage"><img id="lightbox-image" src="assets/images/covers/bon.webp" alt="확대 이미지"></div><div class="lightbox-bottom"><button type="button" class="lightbox-prev" aria-label="이전 이미지">이전</button><p id="lightbox-caption" aria-live="polite"></p><button type="button" class="lightbox-next" aria-label="다음 이미지">다음</button></div></dialog>

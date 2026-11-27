@@ -149,3 +149,7 @@ h1{font-family:inherit;font-size:clamp(54px,5.1vw,78px);font-weight:750;line-hei
 @media(min-width:1200px){#philosophy .philosophy-layout{grid-template-columns:210px minmax(0,1fr);gap:24px}.teaching-features{width:max-content;max-width:100%;justify-self:end}.teaching-features p{font-size:clamp(16px,calc(1.25vw + 1px),18px)}}
 @media(max-width:600px){.teaching-features>li{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:18px 16px}.teaching-feature-number{min-height:28px;font-size:16px}.teaching-features p{font-size:16px;line-height:1.9}#philosophy .section-intro h2{font-size:28px}}
 @media print{.hero-visual .hero-caption{position:static;width:100%;margin:0}}
+
+/* The alternative layout is always an explicit visitor choice. */
+.utility-inner{gap:12px}.view-mode-link{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:auto;min-height:44px;padding:8px 12px;border:1px solid var(--line);color:var(--accent);background:#fff;font-size:14px;font-weight:600;line-height:1.5;white-space:nowrap}.view-mode-link:hover{background:var(--accent-soft)}
+@media(max-width:600px){.utility-inner{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}.view-mode-link{margin:0;padding-inline:9px}}

@@ -177,8 +177,9 @@
       tab.addEventListener('click', () => selectCare(index));
       tab.addEventListener('keydown', (event) => {
         let target;
-        if (event.key === 'ArrowDown') target = (index + 1) % tabs.length;
-        else if (event.key === 'ArrowUp') target = (index - 1 + tabs.length) % tabs.length;
+        const horizontal = tab.closest('[role="tablist"]').getAttribute('aria-orientation') === 'horizontal';
+        if (event.key === 'ArrowDown' || (horizontal && event.key === 'ArrowRight')) target = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowUp' || (horizontal && event.key === 'ArrowLeft')) target = (index - 1 + tabs.length) % tabs.length;
         else if (event.key === 'Home') target = 0;
         else if (event.key === 'End') target = tabs.length - 1;
         else return;
@@ -214,6 +215,7 @@
     const pageNumbers = [6, 7, 14, 15];
     const pageUrl = (index) => `assets/previews/bon-common-math1/page-${pageNumbers[index]}.webp`;
     const compactBook = window.matchMedia('(max-width: 700px)');
+    const singlePageBook = () => compactBook.matches || document.documentElement.classList.contains('mobile-view');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const viewport = bookDialog.querySelector('.book-viewport');
     const spread = bookDialog.querySelector('.book-spread');
@@ -237,7 +239,7 @@
       }
       return loadedPages.get(index);
     };
-    const step = () => compactBook.matches ? 1 : 2;
+    const step = () => singlePageBook() ? 1 : 2;
     const updateControls = () => {
       const focused = document.activeElement;
       previous.disabled = turning || pageIndex === 0;
@@ -254,18 +256,18 @@
       element.alt = `본 공통수학1 내지 PDF ${pageNumbers[index]}쪽`;
     };
     const renderBook = (index) => {
-      pageIndex = compactBook.matches ? index : Math.floor(index / 2) * 2;
+      pageIndex = singlePageBook() ? index : Math.floor(index / 2) * 2;
       setPage(left, pageIndex);
-      right.parentElement.hidden = compactBook.matches;
-      if (!compactBook.matches) setPage(right, pageIndex + 1);
-      const location = compactBook.matches
+      right.parentElement.hidden = singlePageBook();
+      if (!singlePageBook()) setPage(right, pageIndex + 1);
+      const location = singlePageBook()
         ? `PDF ${pageNumbers[pageIndex]}쪽 · ${pageIndex + 1} / 4`
         : `PDF ${pageNumbers[pageIndex]}–${pageNumbers[pageIndex + 1]}쪽 · ${pageIndex / 2 + 1} / 2`;
       bookDialog.querySelector('.book-location').textContent = location;
       updateControls();
     };
     const turnTo = async (requested) => {
-      const target = compactBook.matches ? requested : Math.floor(requested / 2) * 2;
+      const target = singlePageBook() ? requested : Math.floor(requested / 2) * 2;
       if (turning || target < 0 || target >= pageNumbers.length || target === pageIndex) return;
       const token = ++generation;
       turning = true;
@@ -276,7 +278,7 @@
         viewport.scrollTo(0, 0);
         if (reducedMotion.matches || bookDialog.classList.contains('is-zoomed')) {
           renderBook(target);
-        } else if (compactBook.matches) {
+        } else if (singlePageBook()) {
           const forward = target > pageIndex;
           renderBook(target);
           activeAnimation = spread.animate([
