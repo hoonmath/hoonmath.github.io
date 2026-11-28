@@ -334,7 +334,7 @@
         }
       }
     };
-    openBookPreview = (opener, startWithCover = false) => {
+    openBookPreview = (opener) => {
       activeBookOpener = opener;
       generation++;
       activeAnimation?.cancel();
@@ -343,8 +343,7 @@
       bookDialog.classList.remove('is-zoomed');
       zoom.setAttribute('aria-pressed', 'false');
       zoom.textContent = '크게 보기';
-      if (startWithCover) renderCover();
-      else renderBook(0);
+      renderCover();
       bookDialog.showModal();
       viewport.scrollTo(0, 0);
       pageNumbers.forEach((_, index) => loadPage(index));
@@ -412,7 +411,7 @@
     button.setAttribute('aria-controls', targetDialog.id);
     button.addEventListener('click', () => {
       if (button.dataset.materialPreview === 'bon') {
-        openBookPreview(button, true);
+        openBookPreview(button);
       } else if (material) {
         imageOpener = button;
         showImage(material);
