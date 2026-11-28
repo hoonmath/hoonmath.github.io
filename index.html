@@ -19,8 +19,8 @@
       else if (view !== 'desktop') document.documentElement.classList.add('view-choice-pending');
     })();
   </script>
-  <link rel="stylesheet" href="assets/style.css?v=20261128-cover-first">
-  <link rel="stylesheet" href="assets/mobile-view.css?v=20261128-material-links">
+  <link rel="stylesheet" href="assets/style.css?v=20261128-materials-layout">
+  <link rel="stylesheet" href="assets/mobile-view.css?v=20261128-materials-layout">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="최서훈수학">
@@ -165,16 +165,67 @@
     <section id="materials" class="section section-soft section-anchor" aria-labelledby="materials-title">
       <div class="container">
         <p class="eyebrow">CLASS MATERIALS</p>
-        <div class="section-heading-row"><h2 id="materials-title">최서훈 수학<br><strong>교재 미리보기</strong></h2><p class="heading-aside">개념의 시작부터 실전의 마무리까지.<br>학습 단계에 맞춰 이어지는 교재 구성.</p></div>
+        <div class="materials-heading"><h2 id="materials-title">개념부터 실전까지</h2><p>개념을 채우는 교재부터 시험 대비 시험지까지 최서훈T의 고민을 담았습니다.</p></div>
         <div class="materials-toolbar"><div class="filter-group" role="group" aria-label="교재 분류"><button type="button" class="filter-button active" data-filter="all" aria-pressed="true">전체</button><button type="button" class="filter-button" data-filter="regular" aria-pressed="false">정규수업</button><button type="button" class="filter-button" data-filter="school-exam" aria-pressed="false">내신대비</button></div><span class="materials-caption">실제 교재 · 표지 및 내지 미리보기</span></div>
         <p class="visually-hidden" id="filter-status" aria-live="polite"></p>
         <div class="materials-grid">
-          <article class="material" data-category="regular"><a class="material-image" id="preview-bon" href="assets/previews/bon-common-math1/sample.pdf" data-book-preview data-caption="본 · 기교를 버리고 기본에 충실하다." aria-label="본 공통수학1 자세히 보기"><span class="material-book"><img src="assets/images/covers/bon.webp" srcset="assets/images/covers/bon-768.webp 768w, assets/images/covers/bon.webp 2000w" sizes="240px" alt="본 교재 표지" width="595" height="842" loading="lazy"></span><span class="zoom-label">자세히 보기</span></a><div class="material-description"><span>개념 학습</span><h3>본<span class="hanja">本</span></h3><p>기교를 버리고 기본에 충실하다.</p></div></article>
-          <article class="material" data-category="school-exam"><a class="material-image" id="preview-dancho" href="assets/images/covers/dancho.webp" data-lightbox data-caption="생각의 단초 · 비법이 아닌 원칙으로 완성하는 문제 해결의 실마리" aria-label="생각의 단초 교재 자세히 보기"><span class="material-book"><img src="assets/images/covers/dancho.webp" srcset="assets/images/covers/dancho-768.webp 768w, assets/images/covers/dancho.webp 2000w" sizes="240px" alt="생각의 단초 교재 표지" width="595" height="842" loading="lazy"></span><span class="zoom-label">자세히 보기</span></a><div class="material-description"><span>문제 해결 원칙</span><h3>생각의 단초</h3><p>비법이 아닌 원칙으로 완성하는 문제 해결의 실마리</p></div></article>
-          <article class="material" data-category="school-exam"><a class="material-image" id="preview-chowol" href="assets/images/covers/chowol.webp" data-lightbox data-caption="초월 · 내 안의 한계를 뛰어넘다" aria-label="초월 교재 자세히 보기"><span class="material-book"><img src="assets/images/covers/chowol.webp" srcset="assets/images/covers/chowol-768.webp 768w, assets/images/covers/chowol.webp 2000w" sizes="240px" alt="초월 교재 표지" width="595" height="842" loading="lazy"></span><span class="zoom-label">자세히 보기</span></a><div class="material-description"><span>기출·심화</span><h3>초월<span class="hanja">超越</span></h3><p>내 안의 한계를 뛰어넘다</p></div></article>
-          <article class="material" data-category="regular"><a class="material-image" href="assets/images/covers/yeonma.webp" data-lightbox data-caption="연마 · 매일이 모여 기적이 되다." aria-label="연마 교재 자세히 보기"><span class="material-book"><img src="assets/images/covers/yeonma.webp" srcset="assets/images/covers/yeonma-768.webp 768w, assets/images/covers/yeonma.webp 2000w" sizes="240px" alt="연마 교재 표지" width="595" height="842" loading="lazy"></span><span class="zoom-label">자세히 보기</span></a><div class="material-description"><span>문제 적용</span><h3>연마<span class="hanja">練磨</span></h3><p>매일이 모여 기적이 되다.</p></div></article>
-          <article class="material" data-category="school-exam"><a class="material-image" href="assets/images/covers/bisang.webp" data-lightbox data-caption="비상 · 꿈을 향한 힘찬 날갯짓" aria-label="비상 교재 자세히 보기"><span class="material-book"><img src="assets/images/covers/bisang.webp" srcset="assets/images/covers/bisang-768.webp 768w, assets/images/covers/bisang.webp 2000w" sizes="240px" alt="비상 교재 표지" width="595" height="842" loading="lazy"></span><span class="zoom-label">자세히 보기</span></a><div class="material-description"><span>최종 점검</span><h3>비상<span class="hanja">飛上</span></h3><p>꿈을 향한 힘찬 날갯짓</p></div></article>
-          <article class="material" data-category="school-exam"><div class="material-image material-placeholder" aria-hidden="true"></div><div class="material-description"><span>학교별 동형모의고사</span><h3>일취월장 모의고사<span class="hanja">日就月將</span></h3><p>실전에 가까운 연습을 할수 있도록 구성된 완벽한 학교별 동형모의고사</p></div></article>
+          <article class="material" data-category="regular">
+            <a class="material-link" id="preview-bon" href="assets/previews/bon-common-math1/sample.pdf" data-book-preview data-caption="본 · 기교를 버리고 기본에 충실하다." aria-label="본 공통수학1 자세히 보기">
+              <span class="material-image"><span class="material-book"><img src="assets/images/covers/bon.webp" srcset="assets/images/covers/bon-768.webp 768w, assets/images/covers/bon.webp 2000w" sizes="(max-width: 640px) calc((100vw - 46px) / 2), (max-width: 960px) calc((100vw - 104px) / 2), 408px" alt="본 교재 표지" width="595" height="842" loading="lazy"></span></span>
+              <div class="material-description">
+                <div class="material-heading"><h3>본<span class="hanja">本</span></h3><span class="material-kind">개념 학습</span></div>
+                <p>기교를 버리고 기본에 충실하다.</p>
+                <span class="zoom-label">자세히 보기</span>
+              </div>
+            </a>
+          </article>
+          <article class="material" data-category="school-exam">
+            <a class="material-link" id="preview-dancho" href="assets/images/covers/dancho.webp" data-lightbox data-caption="생각의 단초 · 비법이 아닌 원칙으로 완성하는 문제 해결의 실마리" aria-label="생각의 단초 교재 자세히 보기">
+              <span class="material-image"><span class="material-book"><img src="assets/images/covers/dancho.webp" srcset="assets/images/covers/dancho-768.webp 768w, assets/images/covers/dancho.webp 2000w" sizes="(max-width: 640px) calc((100vw - 46px) / 2), (max-width: 960px) calc((100vw - 104px) / 2), 408px" alt="생각의 단초 교재 표지" width="595" height="842" loading="lazy"></span></span>
+              <div class="material-description">
+                <div class="material-heading"><h3>생각의 단초</h3><span class="material-kind">문제 해결 원칙</span></div>
+                <p>비법이 아닌 원칙으로 완성하는 문제 해결의 실마리</p>
+                <span class="zoom-label">자세히 보기</span>
+              </div>
+            </a>
+          </article>
+          <article class="material" data-category="school-exam">
+            <a class="material-link" id="preview-chowol" href="assets/images/covers/chowol.webp" data-lightbox data-caption="초월 · 내 안의 한계를 뛰어넘다" aria-label="초월 교재 자세히 보기">
+              <span class="material-image"><span class="material-book"><img src="assets/images/covers/chowol.webp" srcset="assets/images/covers/chowol-768.webp 768w, assets/images/covers/chowol.webp 2000w" sizes="(max-width: 640px) calc((100vw - 46px) / 2), (max-width: 960px) calc((100vw - 104px) / 2), 408px" alt="초월 교재 표지" width="595" height="842" loading="lazy"></span></span>
+              <div class="material-description">
+                <div class="material-heading"><h3>초월<span class="hanja">超越</span></h3><span class="material-kind">기출·심화</span></div>
+                <p>내 안의 한계를 뛰어넘다</p>
+                <span class="zoom-label">자세히 보기</span>
+              </div>
+            </a>
+          </article>
+          <article class="material" data-category="regular">
+            <a class="material-link" href="assets/images/covers/yeonma.webp" data-lightbox data-caption="연마 · 매일이 모여 기적이 되다." aria-label="연마 교재 자세히 보기">
+              <span class="material-image"><span class="material-book"><img src="assets/images/covers/yeonma.webp" srcset="assets/images/covers/yeonma-768.webp 768w, assets/images/covers/yeonma.webp 2000w" sizes="(max-width: 640px) calc((100vw - 46px) / 2), (max-width: 960px) calc((100vw - 104px) / 2), 408px" alt="연마 교재 표지" width="595" height="842" loading="lazy"></span></span>
+              <div class="material-description">
+                <div class="material-heading"><h3>연마<span class="hanja">練磨</span></h3><span class="material-kind">문제 적용</span></div>
+                <p>매일이 모여 기적이 되다.</p>
+                <span class="zoom-label">자세히 보기</span>
+              </div>
+            </a>
+          </article>
+          <article class="material" data-category="school-exam">
+            <a class="material-link" href="assets/images/covers/bisang.webp" data-lightbox data-caption="비상 · 꿈을 향한 힘찬 날갯짓" aria-label="비상 교재 자세히 보기">
+              <span class="material-image"><span class="material-book"><img src="assets/images/covers/bisang.webp" srcset="assets/images/covers/bisang-768.webp 768w, assets/images/covers/bisang.webp 2000w" sizes="(max-width: 640px) calc((100vw - 46px) / 2), (max-width: 960px) calc((100vw - 104px) / 2), 408px" alt="비상 교재 표지" width="595" height="842" loading="lazy"></span></span>
+              <div class="material-description">
+                <div class="material-heading"><h3>비상<span class="hanja">飛上</span></h3><span class="material-kind">최종 점검</span></div>
+                <p>꿈을 향한 힘찬 날갯짓</p>
+                <span class="zoom-label">자세히 보기</span>
+              </div>
+            </a>
+          </article>
+          <article class="material" data-category="school-exam">
+            <div class="material-image material-placeholder" aria-hidden="true"></div>
+            <div class="material-description">
+              <div class="material-heading"><h3>일취월장 모의고사<span class="hanja">日就月將</span></h3><span class="material-kind">학교별 동형모의고사</span></div>
+              <p>실전에 가까운 연습을 할수 있도록 구성된 완벽한 학교별 동형모의고사</p>
+            </div>
+          </article>
         </div>
         <p class="section-note">표지는 실제 교재 디자인이며, 본 교재는 내지 일부를 함께 살펴볼 수 있습니다. 수업에서 사용하는 교재는 강좌에 맞춰 안내합니다.</p>
       </div>

@@ -80,17 +80,22 @@
 .mobile-view #curriculum .roadmap-footer{flex-direction:column;align-items:stretch;gap:12px;margin-top:16px;font-size:14px}
 .mobile-view #curriculum .roadmap-footer .button{align-self:stretch}
 
-.mobile-view .materials-toolbar{flex-direction:column;align-items:stretch;gap:10px;margin-block:18px 16px}
-.mobile-view .filter-group{display:flex;gap:4px;padding:4px}
-.mobile-view .filter-button{flex:1;padding:8px 4px;font-size:14px;min-height:44px}
-.mobile-view .materials-caption{font-size:12px}
-.mobile-view .materials-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.mobile-view .material{padding:8px}.mobile-view .material-image{aspect-ratio:.95}
-.mobile-view .zoom-label{right:5px;bottom:5px;padding:4px 6px;font-size:12px}
-.mobile-view .material-description{padding:12px 3px 8px}
-.mobile-view .material-description>span{font-size:13px}.mobile-view .material-description h3{font-size:20px}
-.mobile-view .hanja{font-size:14px;margin-left:5px}.mobile-view .material-description p{font-size:16px;line-height:1.65;margin-top:8px}
-.mobile-view .section-note{font-size:13px;line-height:1.8;margin-top:16px}
+/* Two-column catalogue keeps all six books easy to compare on the compact page. */
+.mobile-view #materials .materials-heading h2{font-size:1.875rem;line-height:1.4}
+.mobile-view #materials .materials-heading>p{margin-top:12px;font-size:1rem;line-height:1.8}
+.mobile-view #materials .materials-toolbar{flex-direction:column;align-items:stretch;gap:0;margin-block:20px 20px}
+.mobile-view #materials .filter-group{gap:24px;padding:0}
+.mobile-view #materials .filter-button{flex:0 0 auto;min-height:48px;padding:8px 0 12px;font-size:.9375rem}
+.mobile-view #materials .materials-caption{display:none}
+.mobile-view #materials .materials-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 14px}
+.mobile-view #materials .material-description{padding-top:13px}
+.mobile-view #materials .material-description h3{font-size:1.25rem}
+.mobile-view #materials .material-heading{display:block}
+.mobile-view #materials .material-kind{display:block;margin-top:4px;font-size:.8125rem}
+.mobile-view #materials .material-description p{margin-top:7px;font-size:1rem;line-height:1.65}
+.mobile-view #materials .zoom-label{min-height:44px;margin-top:7px;font-size:.875rem}
+.mobile-view #materials .hanja{font-size:.875rem;margin-left:5px}
+.mobile-view #materials .section-note{margin-top:22px;padding-top:16px;font-size:.8125rem;line-height:1.8}
 
 .mobile-view .care-system-description{font-size:15px;line-height:1.8}
 .mobile-view .care-login-guide{font-size:13px;line-height:1.7}
