@@ -48,8 +48,9 @@
   const image = document.querySelector('#lightbox-image');
   const caption = document.querySelector('#lightbox-caption');
   let currentAnchor = null;
+  let imageOpener = null;
   const visibleImages = () => [...document.querySelectorAll('[data-lightbox]')].filter((anchor) =>
-    !anchor.closest('[hidden]') && (anchor.dataset.gallery || 'materials') === (currentAnchor?.dataset.gallery || 'materials')
+    (!anchor.closest('[hidden]') || anchor === currentAnchor) && (anchor.dataset.gallery || 'materials') === (currentAnchor?.dataset.gallery || 'materials')
   );
   const showImage = (anchor) => {
     currentAnchor = anchor;
@@ -73,6 +74,7 @@
     document.querySelectorAll('[data-lightbox]').forEach((anchor) => {
       anchor.addEventListener('click', (event) => {
         event.preventDefault();
+        imageOpener = anchor;
         showImage(anchor);
         dialog.showModal();
       });
@@ -88,7 +90,7 @@
       const rect = dialog.getBoundingClientRect();
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
     });
-    dialog.addEventListener('close', () => currentAnchor?.focus({ preventScroll: true }));
+    dialog.addEventListener('close', () => imageOpener?.focus({ preventScroll: true }));
   }
 
   const careExplorer = document.querySelector('.care-explorer');
@@ -211,6 +213,7 @@
 
   const bookDialog = document.querySelector('#book-dialog');
   const bookOpener = document.querySelector('[data-book-preview]');
+  let openBookPreview = null;
   if (bookDialog && bookOpener && typeof bookDialog.showModal === 'function') {
     const pageNumbers = [6, 7, 14, 15];
     const pageUrl = (index) => `assets/previews/bon-common-math1/page-${pageNumbers[index]}.webp`;
@@ -219,6 +222,8 @@
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const viewport = bookDialog.querySelector('.book-viewport');
     const spread = bookDialog.querySelector('.book-spread');
+    const cover = bookDialog.querySelector('.book-cover');
+    const coverButton = bookDialog.querySelector('[data-book-cover]');
     const left = bookDialog.querySelector('#book-left');
     const right = bookDialog.querySelector('#book-right');
     const sheet = bookDialog.querySelector('.book-turning-sheet');
@@ -228,6 +233,8 @@
     const ranges = [...bookDialog.querySelectorAll('[data-book-spread]')];
     const loadedPages = new Map();
     let pageIndex = 0;
+    let showingCover = false;
+    let activeBookOpener = bookOpener;
     let turning = false;
     let generation = 0;
     let activeAnimation = null;
@@ -242,12 +249,14 @@
     const step = () => singlePageBook() ? 1 : 2;
     const updateControls = () => {
       const focused = document.activeElement;
-      previous.disabled = turning || pageIndex === 0;
-      next.disabled = turning || pageIndex + step() >= pageNumbers.length;
+      previous.disabled = turning || showingCover;
+      next.disabled = turning || (!showingCover && pageIndex + step() >= pageNumbers.length);
       zoom.disabled = turning;
+      coverButton.disabled = turning;
+      coverButton.setAttribute('aria-pressed', String(showingCover));
       ranges.forEach((button) => {
         button.disabled = turning;
-        button.setAttribute('aria-pressed', String(Number(button.dataset.bookSpread) === Math.floor(pageIndex / 2) * 2));
+        button.setAttribute('aria-pressed', String(!showingCover && Number(button.dataset.bookSpread) === Math.floor(pageIndex / 2) * 2));
       });
       if (bookDialog.open && focused instanceof HTMLButtonElement && focused.disabled && bookDialog.contains(focused)) viewport.focus({ preventScroll: true });
     };
@@ -256,6 +265,9 @@
       element.alt = `본 공통수학1 내지 PDF ${pageNumbers[index]}쪽`;
     };
     const renderBook = (index) => {
+      showingCover = false;
+      cover.hidden = true;
+      spread.hidden = false;
       pageIndex = singlePageBook() ? index : Math.floor(index / 2) * 2;
       setPage(left, pageIndex);
       right.parentElement.hidden = singlePageBook();
@@ -266,8 +278,19 @@
       bookDialog.querySelector('.book-location').textContent = location;
       updateControls();
     };
+    const renderCover = () => {
+      showingCover = true;
+      cover.hidden = false;
+      spread.hidden = true;
+      bookDialog.querySelector('.book-location').textContent = '본 · 표지';
+      viewport.scrollTo(0, 0);
+      updateControls();
+    };
     const turnTo = async (requested) => {
+      if (turning) return;
+      if (requested < 0) { renderCover(); return; }
       const target = singlePageBook() ? requested : Math.floor(requested / 2) * 2;
+      if (showingCover && target < pageNumbers.length) { renderBook(target); return; }
       if (turning || target < 0 || target >= pageNumbers.length || target === pageIndex) return;
       const token = ++generation;
       turning = true;
@@ -311,8 +334,8 @@
         }
       }
     };
-    bookOpener.addEventListener('click', (event) => {
-      event.preventDefault();
+    openBookPreview = (opener, startWithCover = false) => {
+      activeBookOpener = opener;
       generation++;
       activeAnimation?.cancel();
       turning = false;
@@ -320,13 +343,19 @@
       bookDialog.classList.remove('is-zoomed');
       zoom.setAttribute('aria-pressed', 'false');
       zoom.textContent = '크게 보기';
-      renderBook(0);
+      if (startWithCover) renderCover();
+      else renderBook(0);
       bookDialog.showModal();
       viewport.scrollTo(0, 0);
       pageNumbers.forEach((_, index) => loadPage(index));
+    };
+    bookOpener.addEventListener('click', (event) => {
+      event.preventDefault();
+      openBookPreview(bookOpener);
     });
+    coverButton.addEventListener('click', renderCover);
     previous.addEventListener('click', () => turnTo(pageIndex - step()));
-    next.addEventListener('click', () => turnTo(pageIndex + step()));
+    next.addEventListener('click', () => turnTo(showingCover ? 0 : pageIndex + step()));
     ranges.forEach((button) => button.addEventListener('click', () => turnTo(Number(button.dataset.bookSpread))));
     zoom.addEventListener('click', () => {
       const enlarged = bookDialog.classList.toggle('is-zoomed');
@@ -337,8 +366,8 @@
     bookDialog.querySelector('.book-close').addEventListener('click', () => bookDialog.close());
     bookDialog.addEventListener('keydown', (event) => {
       if (bookDialog.classList.contains('is-zoomed')) return;
-      if (event.key === 'ArrowLeft') { event.preventDefault(); turnTo(pageIndex - step()); }
-      if (event.key === 'ArrowRight') { event.preventDefault(); turnTo(pageIndex + step()); }
+      if (event.key === 'ArrowLeft' && !showingCover) { event.preventDefault(); turnTo(pageIndex - step()); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); turnTo(showingCover ? 0 : pageIndex + step()); }
     });
     let touchStart = null;
     viewport.addEventListener('pointerdown', (event) => {
@@ -349,7 +378,7 @@
       const dx = event.clientX - touchStart.x;
       const dy = event.clientY - touchStart.y;
       touchStart = null;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) turnTo(pageIndex + (dx < 0 ? step() : -step()));
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3 && (!showingCover || dx < 0)) turnTo(showingCover ? 0 : pageIndex + (dx < 0 ? step() : -step()));
     });
     viewport.addEventListener('pointercancel', () => { touchStart = null; });
     bookDialog.addEventListener('click', (event) => {
@@ -362,16 +391,38 @@
       turning = false;
       sheet.hidden = true;
       touchStart = null;
-      bookOpener.focus({ preventScroll: true });
+      activeBookOpener.focus({ preventScroll: true });
     });
     compactBook.addEventListener('change', () => {
       generation++;
       activeAnimation?.cancel();
       turning = false;
       sheet.hidden = true;
-      if (bookDialog.open) renderBook(pageIndex);
+      if (bookDialog.open && !showingCover) renderBook(pageIndex);
     });
   }
+
+  const pendingPreview = document.querySelector('#preview-pending-dialog');
+  let pendingOpener = null;
+  pendingPreview?.querySelector('.preview-pending-close').addEventListener('click', () => pendingPreview.close());
+  pendingPreview?.addEventListener('close', () => pendingOpener?.focus({ preventScroll: true }));
+  document.querySelectorAll('[data-material-preview]').forEach((button) => {
+    const material = document.getElementById(`preview-${button.dataset.materialPreview}`);
+    const targetDialog = button.dataset.materialPreview === 'bon' ? bookDialog : material ? dialog : pendingPreview;
+    button.setAttribute('aria-controls', targetDialog.id);
+    button.addEventListener('click', () => {
+      if (button.dataset.materialPreview === 'bon') {
+        openBookPreview(button, true);
+      } else if (material) {
+        imageOpener = button;
+        showImage(material);
+        dialog.showModal();
+      } else {
+        pendingOpener = button;
+        pendingPreview.showModal();
+      }
+    });
+  });
 
   if ('IntersectionObserver' in window && navigation) {
     const sectionLinks = [...navigation.querySelectorAll('a[href^="#"]')];

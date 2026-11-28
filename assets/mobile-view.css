@@ -47,9 +47,7 @@
 .mobile-view .hero-caption .teacher-credentials li:last-child{margin-top:8px;color:var(--accent);font-weight:600}
 .mobile-view .mobile-home-menu{grid-column:1 / -1;grid-row:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .mobile-view .mobile-home-menu a{display:flex;align-items:center;justify-content:center;min-height:54px;padding:10px 6px;background:var(--accent-soft);border:1px solid #c8d6ea;color:var(--accent);font-size:15px;font-weight:700;line-height:1.5;text-align:center}
-.mobile-view .hero-shortcuts{grid-column:1 / -1;grid-row:5;gap:8px;margin:0}
-.mobile-view .hero-shortcuts strong{min-height:44px;padding:10px 3px;font-size:14px;background:#fff}
-.mobile-view .hero-shortcuts span{margin-top:6px;font-size:12px;line-height:1.6}
+.mobile-view .hero-shortcuts{display:none}
 .mobile-view .hero-promise{margin:0 0 16px;font-size:16px;line-height:1.85}
 .mobile-view .hero-promise>span:first-child{font-size:17px}
 .mobile-view .mobile-promise-dialog{width:min(540px,calc(100% - 32px));max-width:none;max-height:calc(100dvh - 32px);padding:22px 24px;border:1px solid var(--line);border-radius:0;background:#fff;color:var(--ink);box-shadow:0 20px 80px #132a4633;overflow:auto}
@@ -76,7 +74,7 @@
 .mobile-view #curriculum .roadmap{grid-template-columns:1fr;gap:0;margin-top:12px}
 .mobile-view #curriculum .roadmap li{padding:20px}
 .mobile-view #curriculum .step-label{font-size:22px}
-.mobile-view #curriculum .step-heading{gap:8px 12px}.mobile-view #curriculum .step-book{font-size:14px}
+.mobile-view #curriculum .step-heading{gap:8px 12px}.mobile-view #curriculum .step-book{font-size:16px}
 .mobile-view #curriculum .roadmap h3{font-size:23px;margin-top:12px}
 .mobile-view #curriculum .roadmap p{font-size:16px;line-height:1.85;margin-top:12px}
 .mobile-view #curriculum .roadmap-footer{flex-direction:column;align-items:stretch;gap:12px;margin-top:16px;font-size:14px}
